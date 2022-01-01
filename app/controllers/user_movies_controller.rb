@@ -11,7 +11,7 @@ class UserMoviesController < ApplicationController
     def create
         user_movie = UserMovie.new(user_movie_params)
         user_movie.user_id = session[:user_id]
-        user_movie.save
+        user_movie.save!
         render json: user_movie, status: :created
     end
 

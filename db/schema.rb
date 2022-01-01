@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_12_31_203618) do
   end
 
   create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "original_title"
     t.float "vote_average"
     t.integer "vote_count"
     t.datetime "created_at", precision: 6, null: false
