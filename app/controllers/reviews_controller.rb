@@ -3,6 +3,11 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
+    def show
+        review = Review.find(params[:id])
+        render json: review
+    end
+
     def create
         review = Review.new(review_params)
         review.user_id = session[:user_id]
