@@ -5,10 +5,7 @@ class MoviesController < ApplicationController
     end
 
     def create
-        movie = Movie.new(movie_params)
-        movie.vote_count = movie.find_vote_count
-        movie.vote_average = movie.find_vote_average
-        movie.save!
+        movie = Movie.create!(movie_params)
         render json: movie
     end
 
@@ -19,6 +16,3 @@ class MoviesController < ApplicationController
     end
 
 end
-
-    # t.float "vote_average"
-    # t.integer "vote_count"

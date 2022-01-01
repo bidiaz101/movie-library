@@ -17,15 +17,13 @@ puts 'Seeding DB'
 (550..600).each do |i|
     movies = GetMovies.new.get_movies(i)
     Movie.create(
-        [
-            {
-                title: JSON.parse(movies)["title"],
-                original_title: JSON.parse(movies)["original_title"],
-                vote_average: JSON.parse(movies)["vote_average"],
-                vote_count: JSON.parse(movies)["vote_count"],
-                omdb_id: i
-            }
-        ]
+        {
+            title: JSON.parse(movies)["title"],
+            original_title: JSON.parse(movies)["original_title"],
+            vote_average: JSON.parse(movies)["vote_average"],
+            vote_count: JSON.parse(movies)["vote_count"],
+            omdb_id: i
+        }
     )
 end
 
