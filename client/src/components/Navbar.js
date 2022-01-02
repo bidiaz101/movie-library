@@ -9,14 +9,22 @@ const Nav = styled.nav`
     justify-content:space-evenly;
     float: center;
 `
+const LinkElem = styled(NavLink)`
+    &.active {
+        background-color: yellow;
+    }
+    &:hover {
+        background-color: green;
+    }
+`
 
 function Navbar() {
     return (
         <Nav>
-            <NavLink to="/now-playing">Now Playing</NavLink>
-            <NavLink to='/top-rated'>Top Rated</NavLink>
-            <NavLink to='/upcoming'>Upcoming</NavLink>
-            <NavLink to='/search'>Search</NavLink>
+            <LinkElem to="/now-playing">Now Playing</LinkElem>
+            <LinkElem to='/top-rated'>Top Rated</LinkElem>
+            <LinkElem to='/upcoming'>Upcoming</LinkElem>
+            <LinkElem to='/search'>Search</LinkElem>
         </Nav>
     )
 }

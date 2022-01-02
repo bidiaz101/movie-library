@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Home from './Home'
 import styled, { keyframes } from 'styled-components'
@@ -31,7 +30,7 @@ function App() {
         <Link to='/'><Title><Logo src={require ('../logo.png')} />Super Movie Library</Title></Link>
         <Navbar />
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
         </Switch>

@@ -4,8 +4,10 @@ import styled from 'styled-components'
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-columns: repeat(4, 20%);
+    grid-template-rows: repeat(4, 20%);
+    grid-column-gap: 90px;
+    grid-row-gap: 30px;
     padding: 50px;
 `
 
@@ -19,15 +21,13 @@ function Home() {
     }, [])
 
     const moviesToDisplay = movies.map(movie => {
-        return <MovieCard movie={movie} />
+        return <MovieCard key={movie.id} movie={movie} />
     })
 
     return (
-        <>
         <Grid>
             {moviesToDisplay}
         </Grid>
-        </>
     )
 }
 
