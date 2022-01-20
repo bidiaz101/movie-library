@@ -10,7 +10,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         id: 0,
-        user: '',
+        username: '',
         darkMode: false,
         status: 'idle',
     },
