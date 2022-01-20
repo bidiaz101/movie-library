@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_203618) do
+ActiveRecord::Schema.define(version: 2022_01_03_044341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 2021_12_31_203618) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.string "original_title"
     t.float "vote_average"
     t.integer "vote_count"
     t.datetime "created_at", precision: 6, null: false
@@ -47,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_12_31_203618) do
     t.integer "movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "vote"
+    t.boolean "favorite"
   end
 
   create_table "users", force: :cascade do |t|

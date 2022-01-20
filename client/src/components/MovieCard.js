@@ -20,7 +20,7 @@ function MovieCard({ movie }){
     const { title, poster_path, release_date } = movie
     return (
         <Card>
-            <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} alt={title + 'poster'} />
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + 'poster'} style={{ width: '100%' }} />
             <div>
                 <p>{`${title} (${ release_date.slice(0,4) })`}</p>
             </div>

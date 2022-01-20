@@ -8,13 +8,20 @@ const Nav = styled.nav`
     display: flex;
     justify-content:space-evenly;
     float: center;
+    background-color: #2ce6df;
+    border-style: solid hidden solid hidden;
+    border-color: #46a8b3;
+    border-width: 5px;
 `
 const LinkElem = styled(NavLink)`
+    color: white;
+    padding: 5px;
     &.active {
-        background-color: yellow;
+        border-style: hidden hidden hidden outset;
+        border-color: gold;
     }
     &:hover {
-        background-color: green;
+        color: navy;
     }
 `
 
