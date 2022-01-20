@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../features/user/userSlice';
 import { logout } from '../features/user/userSlice'
 import Login from './Login'
+import DisplayControls from './DisplayControls';
 
 function App() {
   const username = useSelector(state => state.user.username)
@@ -15,6 +16,7 @@ function App() {
   const dispatch = useDispatch()
 
   const [genres, setGenres] = useState([])
+  const [selectedGenre, setSelectedGenre] = useState("All")
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -57,9 +59,10 @@ function App() {
         {username ? <><p>{`Hey there, ${username}!`}</p><Button onClick={handleLogout}>Logout</Button></> : signInBtns}
       </ButtonContainer>
       <Navbar />
+      <DisplayControls genres={genres} setSelectedGenre={setSelectedGenre} />
       <Switch>
         <Route exact path="/">
-          <Home genres={genres} />
+          <Home genres={genres} selectedGenre={selectedGenre} />
         </Route>
         <Route path='/signup'>
           <AppWrap>

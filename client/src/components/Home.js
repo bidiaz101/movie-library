@@ -11,7 +11,7 @@ const Grid = styled.div`
     padding: 50px;
 `
 
-function Home({ genres }) {
+function Home({ genres, selectedGenre }) {
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
@@ -20,7 +20,11 @@ function Home({ genres }) {
         .then(data => setMovies(data.results))
     }, [])
 
-    const moviesToDisplay = movies.map(movie => {
+    const moviesToDisplay = movies.filter(movie => {
+        if(selectedGenre === 'All') return true
+
+        return movie.genre_ids.includes(parseInt(selectedGenre))
+    }).map(movie => {
         return <MovieCard key={movie.id} movie={movie} genres={genres} />
     })
 

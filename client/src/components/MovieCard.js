@@ -32,8 +32,6 @@ function MovieCard({ movie, genres }){
 
     let rating = ''
 
-    console.log(vote_average)
-
     for(let i = 1; i < vote_average; i++){
         rating += '⭐'
     }
