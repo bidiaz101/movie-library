@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import Home from './Home'
 import styled, { keyframes } from 'styled-components'
@@ -14,8 +14,13 @@ function App() {
 
   const dispatch = useDispatch()
 
+  const [genres, setGenres] = useState([])
+
   useEffect(() => {
     dispatch(fetchUser())
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    .then(resp => resp.json())
+    .then(genreData => setGenres(genreData.genres))
   }, [])
 
   let signInBtns
@@ -54,7 +59,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home genres={genres} />
         </Route>
         <Route path='/signup'>
           <AppWrap>

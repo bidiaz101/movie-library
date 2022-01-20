@@ -11,7 +11,7 @@ const Grid = styled.div`
     padding: 50px;
 `
 
-function Home() {
+function Home({ genres }) {
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function Home() {
     }, [])
 
     const moviesToDisplay = movies.map(movie => {
-        return <MovieCard key={movie.id} movie={movie} />
+        return <MovieCard key={movie.id} movie={movie} genres={genres} />
     })
 
     return (
