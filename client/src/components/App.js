@@ -6,6 +6,8 @@ import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../features/user/userSlice';
+import { logout } from '../features/user/userSlice'
+import Login from './Login'
 
 function App() {
   const username = useSelector(state => state.user.username)
@@ -38,11 +40,16 @@ function App() {
       )
   }
 
+  function handleLogout() {
+    fetch('/logout', { post: 'DELETE' })
+    dispatch(logout())
+  }
+
   return (
     <div>
       <Link to='/'><Title><Logo src={require ('../logo.png')} />Super Movie Library</Title></Link>
       <ButtonContainer>
-        {username ? <><p>{`Hey there, ${username}!`}</p><Button>Logout</Button></> : signInBtns}
+        {username ? <><p>{`Hey there, ${username}!`}</p><Button onClick={handleLogout}>Logout</Button></> : signInBtns}
       </ButtonContainer>
       <Navbar />
       <Switch>
@@ -52,6 +59,11 @@ function App() {
         <Route path='/signup'>
           <AppWrap>
             <Signup Button={Button} />
+          </AppWrap>
+        </Route>
+        <Route path='/login'>
+          <AppWrap>
+            <Login Button={Button} />
           </AppWrap>
         </Route>
       </Switch>
@@ -87,6 +99,9 @@ const Logo = styled.img`
   width: 1.5em;
   animation: ${rotate} infinite 3s linear;
   margin-right: 5px;
+  &:hover {
+    animation: ${rotate} infinite 1s linear;
+  }
 `
 
 const ButtonContainer = styled.div`

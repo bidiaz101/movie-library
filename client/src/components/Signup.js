@@ -71,7 +71,7 @@ function Signup({ Button }) {
             <Input type={showPw ? 'text' : 'password'} name='password_confirmation' value={formData.password_confirmation} onChange={handleChange} />
             
             <BtnWrap>
-                <Button onClick={() => setShowPw(!showPw)} >Show Password</Button>
+                <Button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</Button>
             </BtnWrap>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
@@ -85,18 +85,18 @@ function Signup({ Button }) {
 
 export default Signup
 
-const Input = styled.input`
+export const Input = styled.input`
     display: inline-block;
 `
 
-const Form = styled.form`
+export const Form = styled.form`
     width: 30%;
     margin: 0 auto;
     display: grid;
     grid-column-template: 50% 50%;
 `
 
-const BtnWrap = styled.div`
+export const BtnWrap = styled.div`
     padding: 10px;
     display: flex;
     justify-content: center;
