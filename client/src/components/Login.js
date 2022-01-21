@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 import { useHistory } from 'react-router-dom'
 
-function Login({ Button }) {
+function Login() {
     const [errors, setErrors] = useState([])
     const [showPw, setShowPw] = useState(false)
     const [formData, setFormData] = useState({
@@ -54,18 +54,16 @@ function Login({ Button }) {
             <Input type={showPw ? 'text' : 'password'} name='password' value={formData.password} onChange={handleChange} />
         
             <BtnWrap>
-                <Button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</Button>
+                <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
             </BtnWrap>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
             <BtnWrap>
-                <Button>Log in</Button>
+                <button>Log in</button>
             </BtnWrap>
         </Form>
     )
 }
 
 export default Login
-
-

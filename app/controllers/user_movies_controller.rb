@@ -30,7 +30,7 @@ class UserMoviesController < ApplicationController
     private
 
     def user_movie_params
-        params.permit(:movie_id, :vote)
+        params.permit(:movie_id, :favorite)
     end
 
     def authorize

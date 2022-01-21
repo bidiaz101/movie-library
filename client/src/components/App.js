@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../features/user/userSlice';
 import { logout } from '../features/user/userSlice'
 import Login from './Login'
-import DisplayControls from './DisplayControls';
+import UserMovies from './UserMovies';
 
 function App() {
   const username = useSelector(state => state.user.username)
@@ -16,7 +16,6 @@ function App() {
   const dispatch = useDispatch()
 
   const [genres, setGenres] = useState([])
-  const [selectedGenre, setSelectedGenre] = useState("All")
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -29,19 +28,19 @@ function App() {
 
   switch(useLocation().pathname){
     case '/login': 
-      signInBtns = <Link to='/signup'><Button>Sign Up</Button></Link>
+      signInBtns = <Link to='/signup'><button>Sign Up</button></Link>
       break
     case '/signup':
-      signInBtns = <Link to='/login'><Button>Log In</Button></Link>
+      signInBtns = <Link to='/login'><button>Log In</button></Link>
       break
     default: 
       signInBtns = (
         <>
           <Link to="/login">
-            <Button>Login</Button>
+            <button>Login</button>
           </Link>
           <Link to="/signup">
-            <Button>Sign Up</Button>
+            <button>Sign Up</button>
           </Link>
         </>
       )
@@ -54,25 +53,27 @@ function App() {
 
   return (
     <div>
-      <Link to='/'><Title><Logo src={require ('../logo.png')} />Super Movie Library</Title></Link>
-      <ButtonContainer>
-        {username ? <><p>{`Hey there, ${username}!`}</p><Button onClick={handleLogout}>Logout</Button></> : signInBtns}
-      </ButtonContainer>
+      <Link to='/'><h1 id='title'><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
+      <div className='button-container'>
+        {username ? <><p>{`Hey there, ${username}!`}</p><button onClick={handleLogout}>Logout</button></> : signInBtns}
+      </div>
       <Navbar />
-      <DisplayControls genres={genres} setSelectedGenre={setSelectedGenre} />
       <Switch>
         <Route exact path="/">
-          <Home genres={genres} selectedGenre={selectedGenre} />
+          <Home genres={genres} />
         </Route>
         <Route path='/signup'>
-          <AppWrap>
-            <Signup Button={Button} />
-          </AppWrap>
+          <div className='app-wrap'>
+            <Signup />
+          </div>
         </Route>
         <Route path='/login'>
-          <AppWrap>
-            <Login Button={Button} />
-          </AppWrap>
+          <div className='app-wrap'>
+            <Login />
+          </div>
+        </Route>
+        <Route path='/user-movies'>
+          <UserMovies genres={genres} />
         </Route>
       </Switch>
     </div>
@@ -80,19 +81,6 @@ function App() {
 }
 
 export default App;
-
-const Title = styled.h1`
-  font-size: 1.8em;
-  text-align: left;
-  margin-left: 30px;
-  color: black;
-`
-
-const AppWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const rotate = keyframes`
   from {
@@ -109,25 +97,5 @@ const Logo = styled.img`
   margin-right: 5px;
   &:hover {
     animation: ${rotate} infinite 1s linear;
-  }
-`
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 10px;
-`
-
-const Button = styled.button`
-  color: white;
-  background-color: #2ce6df;
-  padding: 8px;
-  border-radius: 7px;
-  &:hover {
-    color: navy;
   }
 `

@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 
 function DisplayControls({ genres, setSelectedGenre }){
 
@@ -12,24 +11,13 @@ function DisplayControls({ genres, setSelectedGenre }){
     }
 
     return (
-        <Form>
+        <form className='collection-controls'>
             <select onChange={handleChange}>
                 <option value='All'>All</option>
                 {options}
             </select>
-        </Form>
+        </form>
     )
 }
 
 export default DisplayControls
-
-const Form = styled.form`
-    padding: 5px;
-    display: flex;
-    justify-content:space-evenly;
-    float: center;
-    background-color: #587ab0;
-    border-style: hidden hidden solid hidden;
-    border-color: #46a8b3;
-    border-width: 5px;
-`

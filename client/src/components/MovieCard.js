@@ -1,34 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 
-const Card = styled.div`
-    border: 2px solid #e7e7e7;
-    border-radius: 4px;
-    padding: .5rem;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-wrap: wrap;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    &:hover{
-        box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-    }
-    &:active{
-        transition: transform 0.8s;
-        perspective: 1000px;
-        transform: rotateY(180deg);
-    }
-`
+function MovieCard({ movie, genres, collected=false }){
 
-function MovieCard({ movie, genres }){
-    const [flipped, setFlipped] = useState(false)
-
-    const { title, poster_path, release_date, overview, vote_average, vote_count } = movie
-
-    function handleFlip(){
-        setFlipped(!flipped)
-    }
+    const { id, title, poster_path, release_date, overview, vote_average, vote_count } = movie
 
     let rating = ''
 
@@ -40,25 +14,37 @@ function MovieCard({ movie, genres }){
         rating += '✰'
     }
 
+    function handleClick(){
+        fetch('/user_movies', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                movie_id: id,
+                favorite: false
+            })
+        })
+
+    }
+
     return (
-        <Card onClick={handleFlip}>
-            {flipped ? (
-                <div>
-                    <p><strong>Overview: </strong></p>
-                    <p>{overview}</p>
-                    <p>Average Rating: </p>
-                    <p>{rating}</p>
-                    <p>Votes: {vote_count}</p>
-                </div>
-            ) : (
-                <>
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + 'poster'} style={{ width: '100%' }} />
-                <div>
-                    <p>{`${title} (${ release_date.slice(0,4) })`}</p>
-                </div>
-                </>
-            )}
-        </Card>
+        <div className='flip-card'>
+            <div className='flip-card-inner'>
+                    <div className='flip-card-front'>
+                        <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + 'poster'} style={{ width: '100%' }} />
+                        <div>
+                            <p>{`${title} (${ release_date.slice(0,4) })`}</p>
+                        </div>
+                    </div>
+                    <div className='flip-card-back'>
+                        <p><strong>Overview: </strong></p>
+                        <p>{overview}</p>
+                        <p>Average Rating: </p>
+                        <p>{rating}</p>
+                        <p>Votes: {vote_count}</p>
+                        <button id={collected ? 'card-button-collected' : 'card-button-uncollected'} onClick={handleClick}>{collected ? 'Remove from Collection' : 'Add to Collection'}</button>
+                    </div>
+            </div>
+        </div>
     )
 }
 

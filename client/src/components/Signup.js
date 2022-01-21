@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 
-function Signup({ Button }) {
+function Signup() {
     const [showPw, setShowPw] = useState(false)
     const [formData, setFormData] = useState({
         username: '',
@@ -71,13 +71,13 @@ function Signup({ Button }) {
             <Input type={showPw ? 'text' : 'password'} name='password_confirmation' value={formData.password_confirmation} onChange={handleChange} />
             
             <BtnWrap>
-                <Button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</Button>
+                <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
             </BtnWrap>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
             <BtnWrap>
-                <Button>Sign Up</Button>
+                <button>Sign Up</button>
             </BtnWrap>
         </Form>
     )
