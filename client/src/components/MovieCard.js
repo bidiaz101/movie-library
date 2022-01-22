@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
-function MovieCard({ movie, collected=false }){
+function MovieCard({ movie, username,  collected=false }){
 
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = movie
 
@@ -51,6 +52,12 @@ function MovieCard({ movie, collected=false }){
         })
     }
 
+    const history = useHistory()
+
+    function handlePageView(){
+        history.push(`/movie/${id}`)
+    }
+
     return (
         <div className='flip-card'>
             <div className='flip-card-inner'>
@@ -66,7 +73,12 @@ function MovieCard({ movie, collected=false }){
                     <p>Average Rating: {vote_average}</p>
                     <p>{rating}</p>
                     <p>Votes: {vote_count}</p>
-                    <button id={collected ? 'card-button-collected' : 'card-button-uncollected'} onClick={handleClick}>{collected ? 'Remove from Collection' : 'Add to Collection'}</button>
+                    <div className='button-wrap'>
+                        {username ? (
+                            <button id={collected ? 'card-button-collected' : 'card-button-uncollected'} onClick={handleClick}>{collected ? 'Remove from Collection' : 'Add to Collection'}</button>
+                        ) : null}
+                        <button onClick={handlePageView}>View Movie Page</button>
+                    </div>
                 </div>
             </div>
         </div>

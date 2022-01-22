@@ -27,7 +27,7 @@ function Search(){
         <form onSubmit={handleSubmit}>
             <label htmlFor="search">Search: </label>
             <input type='text' onChange={handleChange} name='search' />
-            <input type='submit' value='Go!' />
+            <input type='submit' className='button' value='Go!' />
         </form>
         {results.length ? <h1>hey</h1> : null}
         </>

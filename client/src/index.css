@@ -7,12 +7,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+form {
+  width: 30%;
+  margin: 0 auto;
+  display: grid;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-#title{
+.title{
   font-size: 1.8em;
   text-align: left;
   margin-left: 30px;
@@ -25,7 +31,13 @@ code {
   align-items: center;
 }
 
-button{
+.button-wrap{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+button, .button{
   color: white;
   background-color: #2ce6df;
   padding: 8px;
@@ -83,6 +95,10 @@ nav{
   flex-wrap: wrap;
   transition: 0.3s;
   perspective: 1000px;
+}
+
+#movie-page{
+  
 }
 
 .flip-card-inner{

@@ -58,7 +58,7 @@ function Signup() {
     }
 
     return (
-        <Form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} >
             <label htmlFor='username'>Username: </label>
             <Input type='text' name='username' value={formData.username} onChange={handleChange} />
         
@@ -70,16 +70,16 @@ function Signup() {
             <label htmlFor='password_confirmation'>Password Confirmation: </label>
             <Input type={showPw ? 'text' : 'password'} name='password_confirmation' value={formData.password_confirmation} onChange={handleChange} />
             
-            <BtnWrap>
+            <div className='button-wrap'>
                 <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
-            </BtnWrap>
+            </div>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
-            <BtnWrap>
-                <button>Sign Up</button>
-            </BtnWrap>
-        </Form>
+            <div className='button-wrap'>
+                <input type='submit' className='button' value='Sign Up' />
+            </div>
+        </form>
     )
 }
 
@@ -87,17 +87,4 @@ export default Signup
 
 export const Input = styled.input`
     display: inline-block;
-`
-
-export const Form = styled.form`
-    width: 30%;
-    margin: 0 auto;
-    display: grid;
-    grid-column-template: 50% 50%;
-`
-
-export const BtnWrap = styled.div`
-    padding: 10px;
-    display: flex;
-    justify-content: center;
 `

@@ -10,6 +10,7 @@ import { logout } from '../features/user/userSlice'
 import Login from './Login'
 import UserMovies from './UserMovies';
 import Search from './Search'
+import MoviePage from './MoviePage';
 
 function App() {
   const username = useSelector(state => state.user.username)
@@ -47,7 +48,7 @@ function App() {
 
   return (
     <div>
-      <Link to='/'><h1 id='title'><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
+      <Link to='/'><h1 className='title'><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
       <div className='button-container'>
         {username ? <><p>{`Hey there, ${username}!`}</p><button onClick={handleLogout}>Logout</button></> : signInBtns}
       </div>
@@ -67,6 +68,9 @@ function App() {
         </Route>
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path='/movie/'>
+          <MoviePage />
         </Route>
         <Route path='/signup'>
           <div className='app-wrap'>

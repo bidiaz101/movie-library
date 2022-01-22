@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BtnWrap, Form, Input } from './Signup'
+import { Input } from './Signup'
 import { useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 import { useHistory } from 'react-router-dom'
@@ -46,23 +46,23 @@ function Login() {
     }
 
     return (
-        <Form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} >
             <label htmlFor='username'>Username: </label>
             <Input type='text' name='username' onChange={handleChange} />
 
             <label htmlFor='password'>Password: </label>
             <Input type={showPw ? 'text' : 'password'} name='password' value={formData.password} onChange={handleChange} />
         
-            <BtnWrap>
+            <div className='button-wrap'>
                 <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
-            </BtnWrap>
+            </div>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
-            <BtnWrap>
-                <button>Log in</button>
-            </BtnWrap>
-        </Form>
+            <div className='button-wrap'>
+                <input className='button' type='submit' value='Log In' />
+            </div>
+        </form>
     )
 }
 
