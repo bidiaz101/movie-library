@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import Home from './Home'
 import styled, { keyframes } from 'styled-components'
@@ -9,20 +9,14 @@ import { fetchUser } from '../features/user/userSlice';
 import { logout } from '../features/user/userSlice'
 import Login from './Login'
 import UserMovies from './UserMovies';
+import Search from './Search'
 
 function App() {
   const username = useSelector(state => state.user.username)
 
   const dispatch = useDispatch()
 
-  const [genres, setGenres] = useState([])
-
-  useEffect(() => {
-    dispatch(fetchUser())
-    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    .then(resp => resp.json())
-    .then(genreData => setGenres(genreData.genres))
-  }, [])
+  useEffect(() => dispatch(fetchUser()), [])
 
   let signInBtns
 
@@ -47,7 +41,7 @@ function App() {
   }
 
   function handleLogout() {
-    fetch('/logout', { post: 'DELETE' })
+    fetch('/logout', { method: 'DELETE' })
     dispatch(logout())
   }
 
@@ -60,7 +54,19 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Home genres={genres} />
+          <Home endpoint='popular' />
+        </Route>
+        <Route path="/now-playing">
+          <Home endpoint='now_playing' />
+        </Route>
+        <Route path="/top-rated">
+          <Home endpoint='top_rated' />
+        </Route>
+        <Route path="/upcoming">
+          <Home endpoint='upcoming' />
+        </Route>
+        <Route path="/search">
+          <Search />
         </Route>
         <Route path='/signup'>
           <div className='app-wrap'>
@@ -73,7 +79,7 @@ function App() {
           </div>
         </Route>
         <Route path='/user-movies'>
-          <UserMovies genres={genres} />
+          <UserMovies />
         </Route>
       </Switch>
     </div>

@@ -1,9 +1,9 @@
 class MoviesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-    def index
-        movies = Movie.all
-        render json: movies
+    def show
+        movie = Movie.find_by!(omdb_id: params[:id])
+        render json: movie
     end
 
     def create
@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     private
 
     def movie_params
-        params.permit(:title, :original_title, :ombd_id, :vote_count, :vote_average)
+        params.permit(:omdb_id, :vote_count, :vote_average)
     end
 
     def record_not_found
