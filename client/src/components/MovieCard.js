@@ -1,19 +1,10 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import useRating from './useRating'
 
 function MovieCard({ movie, username,  collected=false }){
 
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = movie
-
-    let rating = ''
-
-    for(let i = 1; i < vote_average; i++){
-        rating += '⭐'
-    }
-
-    for(let i = vote_average; i < 10; i++){
-        rating += '✰'
-    }
 
     function handleClick(){
         fetch(`/movies/${id}`)
@@ -71,7 +62,7 @@ function MovieCard({ movie, username,  collected=false }){
                     <p><strong>Overview: </strong></p>
                     <p>{overview}</p>
                     <p>Average Rating: {vote_average}</p>
-                    <p>{rating}</p>
+                    <p>{useRating(vote_average)}</p>
                     <p>Votes: {vote_count}</p>
                     <div className='button-wrap'>
                         {username ? (
