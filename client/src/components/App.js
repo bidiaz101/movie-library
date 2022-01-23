@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components'
 import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUser } from '../features/user/userSlice';
+import { changeDarkMode, fetchUser } from '../features/user/userSlice';
 import { logout, continueAsGuest } from '../features/user/userSlice'
 import Login from './Login'
 import UserMovies from './UserMovies';
@@ -14,6 +14,8 @@ import MoviePage from './MoviePage';
 
 function App() {
   const username = useSelector(state => state.user.username)
+  const darkMode = useSelector(state => state.user.darkMode)
+  const userId = useSelector(state => state.user.id)
 
   const dispatch = useDispatch()
 
@@ -58,15 +60,45 @@ function App() {
     .then(dispatch(continueAsGuest()))
   }
 
+  function handleChange(){
+    fetch(`/users/${userId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        dark_mode: !darkMode
+      })
+    })
+    .then(dispatch(changeDarkMode()))
+  }
+
+  const Logo = styled.img`
+    width: 1.5em;
+    animation: ${rotate} infinite 3s linear;
+    margin-right: 5px;
+    &:hover {
+      animation: ${rotate} infinite 1s linear;
+    }
+    filter: invert(${darkMode ? '1' : '0'})
+  `
+
   return (
-    <div>
-      <Link to='/'><h1 className='title'><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
+    <div className={darkMode ? 'body-dark': null}>
+      <Link to='/'><h1 ><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
       <div className='button-container'>
-        {username ? <><p>{`Hey there, ${username}!`}</p><button onClick={handleLogout}>Logout</button></> : (
-          <>
+        {username ? (
+        <>
+          <p>{`Hey there, ${username}!`}</p>
+          <div>
+            <label htmlFor='darkMode' className='dark-mode-label'>{darkMode? 'Dark Mode:' : 'Light Mode'}</label>
+            <input type='checkbox' name='darkMode' checked={darkMode} onChange={handleChange} /> 
+          </div>
+          <button className={darkMode ? 'button-dark': null} onClick={handleLogout}>Logout</button>
+        </> 
+        ) : (
+        <>
           {signInBtns}
-          <button onClick={handleGuest}>Continue as Guest</button>
-          </>
+          <button className={darkMode ? 'button-dark': null} onClick={handleGuest}>Continue as Guest</button>
+        </>
         )}
       </div>
       <Navbar />
@@ -115,14 +147,5 @@ const rotate = keyframes`
   }
   to {
     transform: rotate(360deg);
-  }
-`
-
-const Logo = styled.img`
-  width: 1.5em;
-  animation: ${rotate} infinite 3s linear;
-  margin-right: 5px;
-  &:hover {
-    animation: ${rotate} infinite 1s linear;
   }
 `

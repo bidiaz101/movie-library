@@ -60,7 +60,7 @@ function Login() {
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
             <div className='button-wrap'>
-                <input className='button' type='submit' value='Log In' />
+                <input type='submit' value='Log In' />
             </div>
         </form>
     )

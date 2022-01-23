@@ -14,6 +14,7 @@ function MoviePage() {
         .then(data => setMovieData(data))
     }, [])
 
+    // id is the OMDB ID
     const { id, title, budget, original_title, release_date, runtime, overview, poster_path, tagline, vote_average, vote_count} = movieData
     const [genreArr, countriesArr] = [movieData.genres, movieData.production_countries]
 

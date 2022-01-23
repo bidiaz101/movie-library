@@ -77,7 +77,7 @@ function Signup() {
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
 
             <div className='button-wrap'>
-                <input type='submit' className='button' value='Sign Up' />
+                <input type='submit' value='Sign Up' />
             </div>
         </form>
     )

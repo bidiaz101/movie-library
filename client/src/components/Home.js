@@ -13,20 +13,13 @@ function Home({ endpoint }) {
             setMovies(data.results)
 
             data.results.forEach(movie => {
-                const { id, vote_count, vote_average } = movie
-
                 // Stores OMDB Api ID 
 
                 fetch('/movies', {
                     method: 'POST',
                     headers: { "Content-Type": 'application/json' },
-                    body: JSON.stringify({
-                        omdb_id: id,
-                        vote_count: vote_count,
-                        vote_average: vote_average
-                    })
+                    body: JSON.stringify({ omdb_id: movie.id })
                 })
-
             })
         })
     }, [endpoint])

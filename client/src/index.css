@@ -7,6 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.body-dark{
+  background-color: black;
+  height: 500vh;
+}
+
+#option-dark{
+  color: black;
+}
+
 form {
   width: 30%;
   margin: 0 auto;
@@ -18,11 +27,15 @@ code {
     monospace;
 }
 
-.title{
+h1{
   font-size: 1.8em;
   text-align: left;
   margin-left: 30px;
   color: black;
+}
+
+.body-dark *{
+  color: white;
 }
 
 .app-wrap{
@@ -37,11 +50,15 @@ code {
   justify-content: center;
 }
 
-button, .button{
+button, input[type='submit']{
   color: white;
   background-color: #2ce6df;
   padding: 8px;
   border-radius: 7px;
+}
+
+.button-dark, #button-dark{
+  background-color: maroon;
 }
 
 .button-container{
@@ -51,6 +68,8 @@ button, .button{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  align-items: center;
 }
 
 .collection-controls{
@@ -62,6 +81,11 @@ button, .button{
   border-style: hidden hidden solid hidden;
   border-color: #46a8b3;
   border-width: 5px;
+}
+
+#collection-dark{
+  background-color: maroon;
+  border-color: rgb(94, 2, 2);
 }
 
 .grid{
@@ -85,12 +109,17 @@ nav{
   border-width: 5px;
 }
 
+.nav-dark{
+  background-color: maroon;
+  border-color: rgb(94, 2, 2);
+}
+
 .flip-card{
   display: flex;
   justify-content: center;
   text-align: center;
   width: 300px;
-  height: 560px;
+  height: 580px;
   flex-wrap: wrap;
   transition: 0.3s;
   perspective: 1000px;
@@ -107,6 +136,10 @@ nav{
   transition: transform 0.8s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#flip-card-inner-dark{
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
 }
 
 .flip-card:hover .flip-card-inner {
@@ -166,4 +199,79 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
 
 .poster:hover {
   box-shadow: 0 15px 22px 0 rgba(0,0,0,0.2);
+}
+
+.movie-page-content{
+  display: block;
+}
+
+.movie-page-content *{
+  width: 80%;
+}
+
+#modal, .error {
+  border-radius: 10px;
+  color: white;
+
+  margin: 1em;
+  padding: 1em;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1;
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#modal {
+  background-color: rgb(11, 128, 0);
+}
+
+.error{
+  background-color: maroon;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.dark-mode-label{
+  position: relative;
+  bottom: 9px;
+  right: 10px
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  border-radius: 50px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+  width: 40px;
+  height: 20px;
+}
+
+input:checked[type='checkbox']{
+  background: #03a9f4;
+}
+
+input[type='checkbox']:before{
+  content: '';
+  position: absolute;
+  border-radius: 50px;
+  background: #fff;
+  top: 15px;
+  left: 233px;
+  height: 20px;
+  width: 20px;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+input:checked[type='checkbox']:before {
+  left: 255px;
 }

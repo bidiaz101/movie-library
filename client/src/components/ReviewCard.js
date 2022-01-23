@@ -1,6 +1,9 @@
 import React from 'react'
 
-function ReviewCard(){
+function ReviewCard({ review }){
+
+    
+
     return (
         <div>
             ReviewCard

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources 'movies', only: [:show, :create]
 
   resources 'reviews', only: [:show, :create, :delete]
-  resources 'comments', only: [:create, :delete]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

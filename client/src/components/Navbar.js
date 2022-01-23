@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux'
 
 function Navbar() {
     const username = useSelector(state => state.user.username)
+    const darkMode = useSelector(state => state.user.darkMode)
 
     return (
-        <nav>
+        <nav className={darkMode ? 'nav-dark' : null}>
             <LinkElem to="/now-playing">Now Playing</LinkElem>
             <LinkElem to='/top-rated'>Top Rated</LinkElem>
             <LinkElem to='/upcoming'>Upcoming</LinkElem>

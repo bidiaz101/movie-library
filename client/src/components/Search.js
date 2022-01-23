@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import MovieCard from './MovieCard'
+import { useSelector } from 'react-redux'
 
 function Search(){
     const [search, setSearch] = useState('')
@@ -16,20 +17,26 @@ function Search(){
         .then(data => setResults(data.results))
     }
 
+    const username = useSelector(state => state.user.username)
+
     const moviesToDisplay = results.map(movie => {
-        return <MovieCard key={movie.id} movie={movie} />
+        return <MovieCard key={movie.id} movie={movie} username={username} />
     })
 
-    // console.log(moviesToDisplay)
+    const darkMode = useSelector(state => state.user.darkMode)
 
     return (
         <>
         <form onSubmit={handleSubmit}>
             <label htmlFor="search">Search: </label>
-            <input type='text' onChange={handleChange} name='search' />
-            <input type='submit' className='button' value='Go!' />
+            <input id={darkMode ? 'option-dark' : null} type='text' onChange={handleChange} name='search' />
+            <input type='submit' id={darkMode ? 'button-dark' : null} value='Go!' />
         </form>
-        {results.length ? <h1>hey</h1> : null}
+        {results.length ? (
+            <div className='grid'>
+                {moviesToDisplay}
+            </div>
+         ) : null}
         </>
 
     )
