@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
     def show
-        review = Review.find(params[:id])
-        render json: review
+        reviews = Review.where('movie_id = ?', params[:id])
+        render json: reviews
     end
 
     def create

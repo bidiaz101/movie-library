@@ -17,7 +17,7 @@ function UserMovies(){
         .then(genreData => setGenres(genreData.genres))
     }, [])
 
-    console.log(collection)
+    // console.log(collection)
 
     // fetch(`https://api.themoviedb.org/3/movie/${movie.movie.omdb_id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     // .then(resp => resp.json())

@@ -20,7 +20,7 @@ function Search(){
         return <MovieCard key={movie.id} movie={movie} />
     })
 
-    console.log(moviesToDisplay)
+    // console.log(moviesToDisplay)
 
     return (
         <>

@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../features/user/userSlice';
-import { logout } from '../features/user/userSlice'
+import { logout, continueAsGuest } from '../features/user/userSlice'
 import Login from './Login'
 import UserMovies from './UserMovies';
 import Search from './Search'
@@ -43,14 +43,31 @@ function App() {
 
   function handleLogout() {
     fetch('/logout', { method: 'DELETE' })
-    dispatch(logout())
+    .then(dispatch(logout()))
+  }
+
+  function handleGuest() {
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'guest',
+        password: 'guest123'
+      })
+    })
+    .then(dispatch(continueAsGuest()))
   }
 
   return (
     <div>
       <Link to='/'><h1 className='title'><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
       <div className='button-container'>
-        {username ? <><p>{`Hey there, ${username}!`}</p><button onClick={handleLogout}>Logout</button></> : signInBtns}
+        {username ? <><p>{`Hey there, ${username}!`}</p><button onClick={handleLogout}>Logout</button></> : (
+          <>
+          {signInBtns}
+          <button onClick={handleGuest}>Continue as Guest</button>
+          </>
+        )}
       </div>
       <Navbar />
       <Switch>
