@@ -2,43 +2,24 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import useRating from './useRating'
 
-function MovieCard({ movie, username,  collected=false }){
+function MovieCard({ movie, username, collected=false }){
 
+    //id is OMDB ID
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = movie
 
     function handleClick(){
         fetch(`/movies/${id}`)
-        .then(resp => {
-            if(resp.ok){
-                resp.json()
-                .then(movieData => postUserMovie(movieData))
-            } else {
-                postMovieAndUserMovie()
-            }
-        })
-    }
-
-    function postMovieAndUserMovie(){
-        fetch('/movies', {
-            method: 'POST',
-            headers: { "Content-Type": 'application/json' },
-            body: JSON.stringify({
-                omdb_id: id,
-                vote_count: vote_count,
-                vote_average: vote_average
-            })
-        })
         .then(resp => resp.json())
-        .then(movieData => postUserMovie(movieData))
-    }
+        .then(movie => {
+            // id is my DB ID. omdb_id is exactly what you'd think
 
-    function postUserMovie(movieData){
-        fetch('/user_movies', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                movie_id: movieData.id,
-                favorite: false
+            fetch('/user_movies', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    movie_id: movie.id,
+                    favorite: false
+                })
             })
         })
     }
