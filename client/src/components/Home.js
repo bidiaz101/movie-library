@@ -24,8 +24,6 @@ function Home({ endpoint }) {
         })
     }, [endpoint])
 
-    console.log(movies)
-
     const moviesToDisplay = movies.map(movie => {
 
         // movie.id is the OMDB ID, not my backend ID

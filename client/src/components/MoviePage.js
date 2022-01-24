@@ -12,7 +12,7 @@ function MoviePage() {
         fetch(`https://api.themoviedb.org/3${location.pathname}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
         .then(resp => resp.json())
         .then(data => setMovieData(data))
-    }, [])
+    }, [location.pathname])
 
     // id is the OMDB ID
     const { id, title, budget, original_title, release_date, runtime, overview, poster_path, tagline, vote_average, vote_count} = movieData
