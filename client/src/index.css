@@ -12,6 +12,29 @@ body {
   height: 500vh;
 }
 
+.logo{
+  width: 1.5em;
+  animation: rotate infinite 3s linear;
+  margin-right: 5px;
+}
+
+#logo-dark{
+  filter: invert(1);
+}
+
+.logo:hover {
+  animation: rotate infinite 1s linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #option-dark{
   color: black;
 }
@@ -57,8 +80,14 @@ button, input[type='submit']{
   border-radius: 7px;
 }
 
-.button-dark, #button-dark{
+.button-dark, #button-dark, .button-dark-review{
   background-color: maroon;
+}
+
+.button-dark-review, .button-review{
+  position: relative;
+  bottom: 90px;
+  left: 210px;
 }
 
 .button-container{
@@ -208,14 +237,6 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
 
 .poster:hover {
   box-shadow: 0 15px 22px 0 rgba(0,0,0,0.2);
-}
-
-.movie-page-content{
-  display: block;
-}
-
-.movie-page-content *{
-  width: 80%;
 }
 
 #modal, .error {

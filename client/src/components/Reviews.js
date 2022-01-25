@@ -9,27 +9,33 @@ function Reviews({ id }){
     const [reviews, setReviews] = useState([])
     const [isReviewing, setIsReviewing] = useState(false)
 
+    const username = useSelector(state => state.user.username)
+
     useEffect(() => {
         fetch(`/movies/${id}`)
         .then(resp => resp.json())
-        .then(reviewData => console.log(reviewData))
-    }, [])
+        .then(movieData => setReviews(movieData.reviews))
+    }, [id, username])
 
-    const username = useSelector(state => state.user.username)
     const darkMode = useSelector(state => state.user.darkMode)
 
     const message = username ? 'Write one now!' : 'Log in to write one!'
 
-    // const reviewsToDisplay = reviews.map(review => {
-    //     return <ReviewCard key={review.id} review={review} />
-    // })
+    function handleDelete(id){
+        fetch(`/reviews/${id}`, { method: 'DELETE' })
+        .then(setReviews(reviews.filter(review => review.id !== id)))
+    }
+
+    const reviewsToDisplay = reviews.map(review => {
+        return <ReviewCard key={review.id} review={review} handleDelete={handleDelete} />
+    })
 
     return (
         <div>
             <h3 className='movie-page-title'>Reviews</h3>
             <hr />
-            <div className='movie-page-content'>
-                {/* {reviews.length ? reviewsToDisplay : <p>There aren't any reviews for this movie. {message} </p>} */}
+            <div>
+                {reviews.length ? reviewsToDisplay : <p>There aren't any reviews for this movie. {message} </p>}
                 <br />
                 <br />
                 {isReviewing ? (

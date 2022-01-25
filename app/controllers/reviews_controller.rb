@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
         render json: review
     end
 
-    def delete
+    def destroy
         review = Review.find(params[:id])
         review.destroy
         head :no_content

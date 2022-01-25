@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources 'user_movies', only: [:index, :create, :update, :delete]
+  resources 'user_movies', only: [:index, :create, :update, :destroy]
   resources 'movies', only: [:show, :create]
 
-  resources 'reviews', only: [:create, :delete]
+  resources 'reviews', only: [:create, :destroy]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

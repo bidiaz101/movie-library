@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import Home from './Home'
-import styled, { keyframes } from 'styled-components'
 import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -71,19 +70,9 @@ function App() {
     .then(dispatch(changeDarkMode()))
   }
 
-  const Logo = styled.img`
-    width: 1.5em;
-    animation: ${rotate} infinite 3s linear;
-    margin-right: 5px;
-    &:hover {
-      animation: ${rotate} infinite 1s linear;
-    }
-    filter: invert(${darkMode ? '1' : '0'})
-  `
-
   return (
     <div className={darkMode ? 'body-dark': null}>
-      <Link to='/'><h1 ><Logo src={require ('../logo.png')} />Super Movie Library</h1></Link>
+      <Link to='/'><h1 ><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} />Super Movie Library</h1></Link>
       <div className='button-container'>
         {username ? (
         <>
@@ -140,12 +129,3 @@ function App() {
 }
 
 export default App;
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
