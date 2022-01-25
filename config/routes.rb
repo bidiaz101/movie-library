@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources 'user_movies', only: [:index, :create, :update, :delete]
   resources 'movies', only: [:show, :create]
 
-  resources 'reviews', only: [:show, :create, :delete]
+  resources 'reviews', only: [:create, :delete]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

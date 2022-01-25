@@ -46,9 +46,9 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor='content'>My Review: </label>
-            <textarea name='content' value={formData.content} onChange={handleChange} />
+            <textarea name='content' style={{color: 'black'}} value={formData.content} onChange={handleChange} />
             <label htmlFor='score'>My Score: </label>
-            <input type='number' min='0' max='10' name='score' value={formData.score} onChange={handleChange} />
+            <input type='number' style={{color: 'black'}} min='0' max='10' name='score' value={formData.score} onChange={handleChange} />
             <input type='submit' id={darkMode ? 'button-dark' : null} value='Submit' />
         </form>
     )

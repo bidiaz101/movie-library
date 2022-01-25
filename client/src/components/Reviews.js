@@ -10,9 +10,9 @@ function Reviews({ id }){
     const [isReviewing, setIsReviewing] = useState(false)
 
     useEffect(() => {
-        fetch(`/reviews/${id}`)
+        fetch(`/movies/${id}`)
         .then(resp => resp.json())
-        .then(reviewData => setReviews(reviewData))
+        .then(reviewData => console.log(reviewData))
     }, [])
 
     const username = useSelector(state => state.user.username)
@@ -20,15 +20,16 @@ function Reviews({ id }){
 
     const message = username ? 'Write one now!' : 'Log in to write one!'
 
-    const reviewsToDisplay = reviews.map(review => {
-        return <ReviewCard key={review.id} review={review} />
-    })
+    // const reviewsToDisplay = reviews.map(review => {
+    //     return <ReviewCard key={review.id} review={review} />
+    // })
 
     return (
         <div>
             <h3 className='movie-page-title'>Reviews</h3>
+            <hr />
             <div className='movie-page-content'>
-                {reviews.length ? <div>darn</div> : <p>There aren't any reviews for this movie. {message} </p>}
+                {/* {reviews.length ? reviewsToDisplay : <p>There aren't any reviews for this movie. {message} </p>} */}
                 <br />
                 <br />
                 {isReviewing ? (
