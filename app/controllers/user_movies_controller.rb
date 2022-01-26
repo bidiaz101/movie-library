@@ -5,7 +5,6 @@ class UserMoviesController < ApplicationController
 
     def index
         user_movies = UserMovie.where("user_id = ?", session[:user_id])
-        byebug
         render json: user_movies
     end
 

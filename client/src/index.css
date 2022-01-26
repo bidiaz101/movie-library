@@ -126,7 +126,8 @@ button, input[type='submit']{
 .collection-controls{
   padding: 5px;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
+  align-items: center;
   float: center;
   background-color: #587ab0;
   border-style: hidden hidden solid hidden;
@@ -261,7 +262,6 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
 }
 
-<<<<<<< HEAD
 .poster:hover {
   box-shadow: 0 15px 22px 0 rgba(0,0,0,0.2);
 }
@@ -270,8 +270,6 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   box-shadow: 0 6px 8px 0 rgb(255, 255, 255);
 }
 
-=======
->>>>>>> e49aa189482dbacfa1b129ba6260c5dffe609419
 #modal, .error {
   border-radius: 10px;
   color: white;
@@ -337,4 +335,13 @@ input[type='checkbox']:before{
 
 input:checked[type='checkbox']:before {
   left: 255px;
+}
+
+#favorite-toggle:before{
+  top: 219px;
+  left: 853px;
+}
+
+#favorite-toggle:checked:before{
+  left: 873px;
 }

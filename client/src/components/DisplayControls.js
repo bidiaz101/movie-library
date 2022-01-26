@@ -11,7 +11,8 @@ function DisplayControls({ displayFavorites, setDisplayFavorites }){
 
     return (
         <form id={darkMode ? 'collection-dark' : null} className='collection-controls'>
-            <input type='checkbox' className='favorite-toggle' checked={displayFavorites} onChange={handleChange} />
+            <h3>Show Favorites</h3>
+            <input type='checkbox' id='favorite-toggle' checked={displayFavorites} onChange={handleChange} />
         </form>
     )
 }
