@@ -31,6 +31,21 @@ function MoviePage() {
 
     const darkMode = useSelector(state => state.user.darkMode)
 
+    let formattedBudget = ''
+
+    if(budget){
+        for(let i = 0; 0 < budget.toString().length; i++){
+            if(i % 3 === 0) {
+                formattedBudget += ','
+                formattedBudget += budget[i] 
+            } else {
+                formattedBudget += budget[i] 
+            }
+        }
+    }
+
+    console.log(formattedBudget)
+
     return (
         <>
         <h2 className='movie-page-title'>{title}</h2>

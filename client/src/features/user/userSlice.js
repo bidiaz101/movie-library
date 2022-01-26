@@ -29,6 +29,7 @@ export const userSlice = createSlice({
             state.darkMode = false
         },
         continueAsGuest(state, action){
+            state.id = action.payload.id
             state.username = 'guest'
             state.darkMode = action.payload.dark_mode
         }
