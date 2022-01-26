@@ -34,6 +34,29 @@ body {
   }
 }
 
+.logo{
+  width: 1.5em;
+  animation: rotate infinite 3s linear;
+  margin-right: 5px;
+}
+
+#logo-dark{
+  filter: invert(1);
+}
+
+.logo:hover {
+  animation: rotate infinite 1s linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #option-dark{
   color: black;
 }
@@ -238,6 +261,7 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
 }
 
+<<<<<<< HEAD
 .poster:hover {
   box-shadow: 0 15px 22px 0 rgba(0,0,0,0.2);
 }
@@ -246,6 +270,8 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   box-shadow: 0 6px 8px 0 rgb(255, 255, 255);
 }
 
+=======
+>>>>>>> e49aa189482dbacfa1b129ba6260c5dffe609419
 #modal, .error {
   border-radius: 10px;
   color: white;
