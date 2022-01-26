@@ -1,5 +1,7 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :id, :omdb_id
+  attributes :id, :omdb_id, :reviews
 
-  has_many :reviews
+  def reviews
+    ActiveModel::SerializableResource.new(object.reviews, each_serializer: ReviewSerializer)
+  end
 end

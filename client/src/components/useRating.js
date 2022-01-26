@@ -6,7 +6,7 @@ function useRating(rating){
     }
 
     for(let i = rating; i < 10; i++){
-        stars += '✰'
+        stars += ' ✰'
     }
 
     return stars

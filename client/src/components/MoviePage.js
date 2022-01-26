@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Reviews from './Reviews'
 import useRating from './useRating'
+import { useSelector } from 'react-redux'
 
 function MoviePage() {
     const [movieData, setMovieData] = useState([])
@@ -28,12 +29,14 @@ function MoviePage() {
         countries = countriesArr.map(country => <li key={country.name}>{country.name}</li>)
     }
 
+    const darkMode = useSelector(state => state.user.darkMode)
+
     return (
         <>
         <h2 className='movie-page-title'>{title}</h2>
         <div className='movie-page'>
             <div className='flip-card' id='movie-page-card'>
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + 'poster'} style={{ width: '100%' }} className='poster' />
+                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + 'poster'} style={{ width: '100%' }} id={darkMode ? 'poster-dark' : null} className='poster' />
                 <p>{tagline}</p>
                 <p>Rating: {vote_average} {useRating(vote_average)}</p>
                 <p>{vote_count} votes</p>

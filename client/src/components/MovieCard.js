@@ -1,40 +1,73 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useRating from './useRating'
 import { useSelector } from 'react-redux'
 
-function MovieCard({ movie, username, collected=false, userMovies=[], collection=[] ,setCollection= () => null }){
+function MovieCard({ 
+    movie={
+        id: 0,
+        title: '',
+        poster_path: '',
+        release_date: '',
+        overview: '',
+        vote_average: 0,
+        vote_count: 0
+    }, 
+    username, 
+    collected=false,
+    omdbId,
+    handleRemove,
+    userMovieId,
+    favorite
+}){
     const [hidden, setHidden] = useState(true)
     const [errors, setErrors] = useState([])
+    const [thisMovie, setThisMovie] = useState(movie)
+    const [favoriteState, setFavoriteState] = useState(favorite)
+
+    useEffect(() => {
+        if(collected){
+            fetch(`https://api.themoviedb.org/3/movie/${omdbId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+            .then(resp => resp.json())
+            .then(movieData => setThisMovie(movieData))
+        }
+    }, [])
 
     //id is OMDB ID
-    const { id, title, poster_path, release_date, overview, vote_average, vote_count } = movie
+    const { id, title, poster_path, release_date, overview, vote_average, vote_count } = thisMovie
 
     function handleAdd(){
-        fetch(`/movies/${id}`)
-        .then(resp => resp.json())
-        .then(movie => {
-            // id is my DB ID. omdb_id is exactly what you'd think
+        fetch('/movies', {
+            method: 'POST',
+            headers: { "Content-Type": 'application/json' },
+            body: JSON.stringify({ omdb_id: thisMovie.id })
+        })
+        .then(
+            fetch(`/movies/${id}`)
+            .then(resp => resp.json())
+            .then(movieResp => {
+                // id is my DB ID. omdb_id is exactly what you'd think
 
-            fetch('/user_movies', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    movie_id: movie.id,
-                    favorite: false
+                fetch('/user_movies', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        movie_id: movieResp.id,
+                        favorite: false
+                    })
+                })
+                .then(resp => {
+                    if(resp.ok){
+                        setHidden(false)
+                        setTimeout(() => setHidden(true) , 2000)
+                    } else {
+                        resp.json()
+                        .then(data => setErrors(data.error))
+                        setTimeout(() => setErrors([]) , 2000)
+                    }
                 })
             })
-            .then(resp => {
-                if(resp.ok){
-                    setHidden(false)
-                    setTimeout(() => setHidden(true) , 2000)
-                } else {
-                    resp.json()
-                    .then(data => setErrors(data.error))
-                    setTimeout(() => setErrors([]) , 2000)
-                }
-            })
-        })
+        )
     }
 
     const history = useHistory()
@@ -45,23 +78,22 @@ function MovieCard({ movie, username, collected=false, userMovies=[], collection
 
     const darkMode = useSelector(state => state.user.darkMode)
 
-    function handleRemove(){
-        const movieToRemove = userMovies.find(movieObj => movieObj.movie.omdb_id === id)
-        
-        console.log(movieToRemove)
-        fetch(`/user_movies/${movieToRemove.id}`, { method: 'DELETE' })
-        .then(setCollection(collection.filter(collectionItem => {
-            // collectionItem.id grabs the movie omdb_id
-
-            return collectionItem.id !== movieToRemove.movie.omdb_id
-        })))
-    }
-
     const collectionBtn = collected ? (
-        <button id='card-button-collected' onClick={handleRemove}>Remove from Collection</button>
+        <button id='card-button-collected' onClick={() => handleRemove(userMovieId)}>Remove from Collection</button>
     ) : (
         <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
     )
+
+    const heart = favoriteState ? '💗' : '♡' ;
+
+    function handleFavorite(){
+        fetch(`/user_movies/${userMovieId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ favorite: !favorite })
+        })
+        .then(setFavoriteState(!favoriteState))
+    }
 
     return (
         <div className='flip-card'>
@@ -71,10 +103,13 @@ function MovieCard({ movie, username, collected=false, userMovies=[], collection
                 <div className='flip-card-front'>
                     <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + ' poster'} style={{ width: '100%' }} />
                     <div>
-                        <h2>{`${title} ${ release_date ? `(${release_date.slice(0,4)})` : "" }`}</h2>
+                        <h2>{`${title} ${ release_date ? `(${release_date.slice(0,4) })` : "" }`}</h2>
+                        {collected ? <div>{heart}</div> : null}
+                        <p>{useRating(vote_average)}</p>
                     </div>
                 </div>
                 <div className='flip-card-back'>
+                    {collected ? <div onClick={handleFavorite}>{heart}</div> : null}
                     <p><strong>Overview: </strong></p>
                     <p>{overview}</p>
                     <p>Average Rating: {vote_average}</p>

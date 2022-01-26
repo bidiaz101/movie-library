@@ -4,23 +4,17 @@ import { useSelector } from 'react-redux'
 
 function Home({ endpoint }) {
     const [movies, setMovies] = useState([])
+    const [status, setStatus] = useState('idle')
+
     const username = useSelector(state => state.user.username)
 
     useEffect(() => {
+        setStatus('loading')
         fetch(`https://api.themoviedb.org/3/movie/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
         .then(resp => resp.json())
         .then(data => {
             setMovies(data.results)
-
-            data.results.forEach(movie => {
-                // Stores OMDB Api ID 
-
-                fetch('/movies', {
-                    method: 'POST',
-                    headers: { "Content-Type": 'application/json' },
-                    body: JSON.stringify({ omdb_id: movie.id })
-                })
-            })
+            setStatus('idle')
         })
     }, [endpoint])
 
@@ -33,7 +27,7 @@ function Home({ endpoint }) {
 
     return (
         <div className='grid'>
-            {moviesToDisplay}
+            {status === 'idle' ? moviesToDisplay : <h1>Loading...</h1>}
         </div>
     )
 }

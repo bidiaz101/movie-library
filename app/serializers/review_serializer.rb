@@ -1,5 +1,7 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :movie_id, :user_id, :content, :score
+  attributes :id, :movie_id, :user_id, :content, :score, :user
 
-  belongs_to :user
+  def user
+    ActiveModel::SerializableResource.new(object.user, serializer: UserSerializer)
+  end
 end

@@ -4,58 +4,51 @@ import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 
 function UserMovies(){
-    const [genres, setGenres] = useState([])
-    const [selectedGenre, setSelectedGenre] = useState("All")
+    const [displayFavorites, setDisplayFavorites] = useState(false)
     const [userMovies, setUserMovies] = useState([])
-    const [collection, setCollection] = useState([])
+    const [status, setStatus] = useState('idle')
 
     const username = useSelector(state => state.user.username)
 
     useEffect(() => {
+        setStatus('loading')
         fetch('/user_movies')
         .then(resp => resp.json())
         .then(data => {
-            const allMovieData = []
-
-            data.forEach(userMovie => {
-                const id = userMovie.movie.omdb_id
-                
-                fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-                .then(resp => resp.json())
-                .then(movieData => allMovieData.push(movieData))
-            })
-
-            setCollection(allMovieData)
             setUserMovies(data)
+            setStatus('idle')
         })
-
-        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-        .then(resp => resp.json())
-        .then(genreData => setGenres(genreData.genres))
     }, [])
 
-    const collectionToDisplay = collection.map(movieData => {
+    function handleRemove(id){
+        fetch(`/user_movies/${id}`, { method: 'DELETE' })
+        .then(setUserMovies(userMovies.filter(userMovie => userMovie.id !== id)))
+    }
+
+    const moviesToDisplay = userMovies.filter(movieData => displayFavorites ? movieData.favorite : true).map(movieData => {
         return <MovieCard 
-            key={movieData.id} 
-            movie={movieData} 
+            key={movieData.id}
+            omdbId={movieData.movie.omdb_id}
             username={username} 
-            collected={true} 
-            collection={collection} 
-            setCollection={setCollection} 
-            userMovies={userMovies} 
+            collected={true}
+            setUserMovies={setUserMovies} 
+            userMovies={userMovies}
+            handleRemove={handleRemove}
+            userMovieId={movieData.id}
+            favorite={movieData.favorite}
         />
     })
 
-    console.log(collection)
+    const idleContent = userMovies.length ? (
+        <div className='collection-grid'>
+            {moviesToDisplay}
+        </div>
+    ) : <h1>You have no movies in your collection. Browse or search to add some.</h1> ;
 
     return (
         <div>
-            <DisplayControls genres={genres} setSelectedGenre={setSelectedGenre}/>
-            {collection.length ? (
-                <div className='collection-grid'>
-                    {collectionToDisplay}
-                </div>
-            ) : <h1>You have no movies in your collection. Browse or search to add some.</h1>}
+            <DisplayControls displayFavorites={displayFavorites} setDisplayFavorites={setDisplayFavorites} />
+            {status === 'loading' ? <h1>Loading...</h1> : idleContent}
         </div>
     )
 }

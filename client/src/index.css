@@ -9,7 +9,29 @@ body {
 
 .body-dark{
   background-color: black;
-  height: 500vh;
+}
+
+.logo{
+  width: 1.5em;
+  animation: rotate infinite 3s linear;
+  margin-right: 5px;
+}
+
+#logo-dark{
+  filter: invert(1);
+}
+
+.logo:hover {
+  animation: rotate infinite 1s linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #option-dark{
@@ -57,8 +79,14 @@ button, input[type='submit']{
   border-radius: 7px;
 }
 
-.button-dark, #button-dark{
+.button-dark, #button-dark, .button-dark-review{
   background-color: maroon;
+}
+
+.button-dark-review, .button-review{
+  position: relative;
+  bottom: 90px;
+  left: 210px;
 }
 
 .button-container{
@@ -93,16 +121,16 @@ button, input[type='submit']{
   grid-template-columns: repeat(4, 20%);
   grid-template-rows: repeat(4, 20%);
   grid-column-gap: 90px;
-  grid-row-gap: 40px;
+  grid-row-gap: 30px;
   padding: 50px;
 }
 
 .collection-grid{
   display: grid;
   grid-template-columns: repeat(4, 20%);
-  grid-template-rows: repeat(4, 20%);
+  grid-template-rows: repeat(50, 20%);
   grid-column-gap: 90px;
-  grid-row-gap: 190px;
+  grid-row-gap: 15px;
   padding: 50px;
 }
 
@@ -128,7 +156,7 @@ nav{
   justify-content: center;
   text-align: center;
   width: 300px;
-  height: 580px;
+  height: 590px;
   flex-wrap: wrap;
   transition: 0.3s;
   perspective: 1000px;
@@ -206,16 +234,16 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   border-radius: 5px;
 }
 
+#poster-dark{
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+}
+
 .poster:hover {
   box-shadow: 0 15px 22px 0 rgba(0,0,0,0.2);
 }
 
-.movie-page-content{
-  display: block;
-}
-
-.movie-page-content *{
-  width: 80%;
+#poster-dark:hover{
+  box-shadow: 0 6px 8px 0 rgb(255, 255, 255);
 }
 
 #modal, .error {
