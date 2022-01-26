@@ -80,11 +80,7 @@ function App() {
 
   return (
     <div className={darkMode ? 'body-dark': null}>
-<<<<<<< HEAD
       <Link to='/'><h1 ><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />Super Movie Library</h1></Link>
-=======
-      <Link to='/'><h1 ><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} />Super Movie Library</h1></Link>
->>>>>>> e49aa189482dbacfa1b129ba6260c5dffe609419
       <div className='button-container'>
         {username ? (
         <>
