@@ -329,3 +329,8 @@ input:checked[type='checkbox']:before {
 #favorite-toggle:checked:before{
   left: 873px;
 }
+
+#credit{
+  position: relative;
+  top: 80px;
+}

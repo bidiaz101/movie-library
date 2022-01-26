@@ -26,7 +26,7 @@ const LinkElem = styled(NavLink)`
     color: white;
     padding: 5px;
     &.active {
-        border-style: hidden hidden hidden outset;
+        border-style: hidden hidden hidden solid;
         border-color: gold;
         border-radius: 5px;
         border-width: 5px;

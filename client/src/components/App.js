@@ -143,6 +143,9 @@ function App() {
           <UserMovies />
         </Route>
       </Switch>
+      <div id='credit'>
+        <p><small><a href='https://www.themoviedb.org/' target='_blank' >TMDB</a> is the source all movie data and images. This site has no affiliation with TMDB.</small></p>
+      </div>
     </div>
   );
 }
