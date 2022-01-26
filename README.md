@@ -6,7 +6,12 @@ Super movie library is an app intended to keep a digital log for the few left wh
 
 My dad is getting up there in age and I believe he was the inspiration behind what they say about old dogs. He still buys DVDs even though we have access to 5+ streaming services. His memory isn't that great either so he often forgets what he has and this results in duplicate copies. 
 
+<<<<<<< HEAD
 ![DVD collection](https://i.imgur.com/Rr6CXud.jpg "There are more stored in another room")
+=======
+###### There are more stored in another room
+![DVD collection](https://i.imgur.com/Rr6CXud.jpg)
+>>>>>>> ce0b03fcca2945f59d36f7172378dc7a1e2f8641
 
 He can buy them all he wants, but why spend money on another copy when he has one? And how can he remember if he has one already? Alphabetize? Sure, but I'm a developer so why not build a web app to keep track of them? (Plus alphabetizing would require they be put back where they belong. And you know what they say about old dogs.)
 
