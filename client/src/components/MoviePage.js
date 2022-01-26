@@ -31,6 +31,19 @@ function MoviePage() {
 
     const darkMode = useSelector(state => state.user.darkMode)
 
+    let formattedBudget = ''
+
+    if(budget){
+        for(let i = 0; i < budget.toString().length; i++){
+            if(i % 3 === 0 && i) {
+                formattedBudget += ','
+                formattedBudget += budget.toString()[i] 
+            } else {
+                formattedBudget += budget.toString()[i] 
+            }
+        }
+    }
+
     return (
         <>
         <h2 className='movie-page-title'>{title}</h2>
@@ -50,7 +63,7 @@ function MoviePage() {
                     </li>
                     ) : null}
                     <li>Runtime: {runtime}</li>
-                    {budget ? <li>Budget: ${budget}</li> : null}
+                    {budget ? <li>Budget: ${formattedBudget}</li> : null}
                     <li>Original Title: {original_title}</li>
                     <li>Release Date: {release_date}</li>
                     {countries ? (
