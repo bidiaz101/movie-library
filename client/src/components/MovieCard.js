@@ -86,7 +86,7 @@ function MovieCard({
         <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
     )
 
-    const heart = favoriteState ? '💗' : '♡' ;
+    const heart = favoritesArr.includes(userMovieId) ? '💗' : '♡' ;
 
     function handleFavorite(){
         fetch(`/user_movies/${userMovieId}`, {

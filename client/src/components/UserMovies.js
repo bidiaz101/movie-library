@@ -51,7 +51,7 @@ function UserMovies(){
     ) : <h1>You have no movies in your collection. Browse or search to add some.</h1> ;
 
     return (
-        <div>
+        <div className='grid-parent'>
             <DisplayControls displayFavorites={displayFavorites} setDisplayFavorites={setDisplayFavorites} />
             {status === 'loading' ? <h1>Loading...</h1> : idleContent}
         </div>

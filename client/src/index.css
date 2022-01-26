@@ -108,7 +108,7 @@ button, input[type='submit']{
 
 .button-dark-review, .button-review{
   position: relative;
-  bottom: 90px;
+  bottom: 110px;
   left: 210px;
 }
 
@@ -149,12 +149,16 @@ button, input[type='submit']{
   padding: 50px;
 }
 
+.grid-parent{
+  justify-content: start;
+}
+
 .collection-grid{
   display: grid;
   grid-template-columns: repeat(4, 20%);
-  grid-template-rows: repeat(50, 20%);
+  grid-template-rows: repeat(4, 25%);
   grid-column-gap: 90px;
-  grid-row-gap: 15px;
+  grid-row-gap: 50px;
   padding: 50px;
 }
 
@@ -237,6 +241,10 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-rows: 1fr;
+}
+
+.review-page{
+  margin-left: 50px;
 }
 
 #movie-page-card{

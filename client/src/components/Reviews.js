@@ -31,7 +31,7 @@ function Reviews({ id }){
     })
 
     return (
-        <div>
+        <div className='review-page'>
             <h3 className='movie-page-title'>Reviews</h3>
             <hr />
             <div>
