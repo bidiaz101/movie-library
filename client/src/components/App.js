@@ -71,9 +71,10 @@ function App() {
         password: 'guest123'
       })
     })
-    .then(() => {
+    .then(resp => resp.json())
+    .then(guestData => {
       history.push('/')
-      dispatch(continueAsGuest())
+      dispatch(continueAsGuest(guestData))
     })
   }
 
@@ -89,7 +90,7 @@ function App() {
   }
 
   return (
-    <div className={darkMode ? 'body-dark': null}>
+    <div>
       <Link to='/'><h1 ><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />Super Movie Library</h1></Link>
       <div className='button-container'>
         {username ? (

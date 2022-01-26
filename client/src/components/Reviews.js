@@ -20,6 +20,12 @@ function Reviews({ id }){
     const darkMode = useSelector(state => state.user.darkMode)
 
     const message = username ? 'Write one now!' : 'Log in to write one!'
+    
+    const reviewOption = username ? (
+        <button className={darkMode ? 'button-dark': null} onClick={() => setIsReviewing(!isReviewing)}>Write Review</button>
+    ) : (
+        <p>Log in to write a review!</p>
+    );
 
     function handleDelete(id){
         fetch(`/reviews/${id}`, { method: 'DELETE' })
@@ -42,7 +48,7 @@ function Reviews({ id }){
                     <div>
                         <ReviewForm id={id} reviews={reviews} setReviews={setReviews} setIsReviewing={setIsReviewing} />
                     </div> 
-                ) : <button className={darkMode ? 'button-dark': null} onClick={() => setIsReviewing(!isReviewing)}>Write Review</button>}
+                ) : reviewOption}
 
             </div>
         </div>

@@ -28,8 +28,9 @@ export const userSlice = createSlice({
             state.username = ''
             state.darkMode = false
         },
-        continueAsGuest(state){
+        continueAsGuest(state, action){
             state.username = 'guest'
+            state.darkMode = action.payload.dark_mode
         }
     },
     extraReducers: {

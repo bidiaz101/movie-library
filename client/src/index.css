@@ -11,27 +11,8 @@ body {
   background-color: black;
 }
 
-.logo{
-  width: 1.5em;
-  animation: rotate infinite 3s linear;
-  margin-right: 5px;
-}
-
-#logo-dark{
-  filter: invert(1);
-}
-
-.logo:hover {
-  animation: rotate infinite 1s linear;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body-dark *{
+  color: white;
 }
 
 .logo{
@@ -77,10 +58,6 @@ h1{
   text-align: left;
   margin-left: 30px;
   color: black;
-}
-
-.body-dark *{
-  color: white;
 }
 
 .app-wrap{

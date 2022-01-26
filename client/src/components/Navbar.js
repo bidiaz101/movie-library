@@ -28,6 +28,8 @@ const LinkElem = styled(NavLink)`
     &.active {
         border-style: hidden hidden hidden outset;
         border-color: gold;
+        border-radius: 5px;
+        border-width: 5px;
     }
     &:hover {
         color: navy;
