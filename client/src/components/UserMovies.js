@@ -7,6 +7,7 @@ function UserMovies(){
     const [displayFavorites, setDisplayFavorites] = useState(false)
     const [userMovies, setUserMovies] = useState([])
     const [status, setStatus] = useState('idle')
+    const [favoritesArr, setFavoritesArr] = useState([])
 
     const username = useSelector(state => state.user.username)
 
@@ -16,6 +17,7 @@ function UserMovies(){
         .then(resp => resp.json())
         .then(data => {
             setUserMovies(data)
+            setFavoritesArr(data.filter(userMovie => userMovie.favorite).map(userMovie => userMovie.id))
             setStatus('idle')
         })
     }, [])
@@ -25,7 +27,8 @@ function UserMovies(){
         .then(setUserMovies(userMovies.filter(userMovie => userMovie.id !== id)))
     }
 
-    const moviesToDisplay = userMovies.filter(movieData => displayFavorites ? movieData.favorite : true).map(movieData => {
+    const moviesToDisplay = userMovies.filter(movieData => displayFavorites ? favoritesArr.includes(movieData.id) : true).map(movieData => {
+        // movieData.id is the user_movie id
         return <MovieCard 
             key={movieData.id}
             omdbId={movieData.movie.omdb_id}
@@ -36,6 +39,8 @@ function UserMovies(){
             handleRemove={handleRemove}
             userMovieId={movieData.id}
             favorite={movieData.favorite}
+            favoritesArr={favoritesArr}
+            setFavoritesArr={setFavoritesArr}
         />
     })
 

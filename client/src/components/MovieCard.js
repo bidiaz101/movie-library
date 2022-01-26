@@ -18,7 +18,9 @@ function MovieCard({
     omdbId,
     handleRemove,
     userMovieId,
-    favorite
+    favorite,
+    favoritesArr,
+    setFavoritesArr
 }){
     const [hidden, setHidden] = useState(true)
     const [errors, setErrors] = useState([])
@@ -93,6 +95,11 @@ function MovieCard({
             body: JSON.stringify({ favorite: !favorite })
         })
         .then(setFavoriteState(!favoriteState))
+        if(!favoriteState){
+            setFavoritesArr([...favoritesArr, userMovieId])
+        } else {
+            setFavoritesArr(favoritesArr.filter(id => userMovieId !== id))
+        }
     }
 
     return (
@@ -109,12 +116,12 @@ function MovieCard({
                     </div>
                 </div>
                 <div className='flip-card-back'>
-                    {collected ? <div onClick={handleFavorite}>{heart}</div> : null}
                     <p><strong>Overview: </strong></p>
                     <p>{overview}</p>
                     <p>Average Rating: {vote_average}</p>
                     <p>{useRating(vote_average)}</p>
                     <p>Votes: {vote_count}</p>
+                    {collected ? <div onClick={handleFavorite}>{heart}</div> : null}
                     <div className='button-wrap'>
                         {username ? (
                             collectionBtn
