@@ -19,7 +19,7 @@ function MovieCard({
     handleRemove,
     userMovieId,
     favorite,
-    favoritesArr,
+    favoritesArr=[],
     setFavoritesArr
 }){
     const [hidden, setHidden] = useState(true)
@@ -88,6 +88,8 @@ function MovieCard({
 
     const heart = favoritesArr.includes(userMovieId) ? '💗' : '♡' ;
 
+    // favoriteState used to setState after fetching data to render favorites on loading, FavoritesArray is to 
+    // keep track of which cards to display when switch is toggled
     function handleFavorite(){
         fetch(`/user_movies/${userMovieId}`, {
             method: 'PATCH',
@@ -102,6 +104,9 @@ function MovieCard({
         }
     }
 
+    const movieCardTitle = `${title} ${release_date ? `(${release_date.slice(0,4) })` : ""}`
+    const stars = useRating(vote_average)
+
     return (
         <div className='flip-card'>
             <div id='modal' className={hidden ? 'hidden' : null} >Movie Successfully Added!</div>
@@ -110,9 +115,9 @@ function MovieCard({
                 <div className='flip-card-front'>
                     <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + ' poster'} style={{ width: '100%' }} />
                     <div>
-                        <h2>{`${title} ${ release_date ? `(${release_date.slice(0,4) })` : "" }`}</h2>
+                        <h2>{movieCardTitle}</h2>
                         {collected ? <div>{heart}</div> : null}
-                        <p>{useRating(vote_average)}</p>
+                        {movieCardTitle.length > 44 && collected ? null : <p>{stars}</p>}
                     </div>
                 </div>
                 <div className='flip-card-back'>

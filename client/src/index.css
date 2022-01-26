@@ -145,7 +145,7 @@ button, input[type='submit']{
   grid-template-columns: repeat(4, 20%);
   grid-template-rows: repeat(4, 20%);
   grid-column-gap: 90px;
-  grid-row-gap: 30px;
+  grid-row-gap: 35px;
   padding: 50px;
 }
 
@@ -156,7 +156,6 @@ button, input[type='submit']{
 .collection-grid{
   display: grid;
   grid-template-columns: repeat(4, 20%);
-  grid-template-rows: repeat(4, 25%);
   grid-column-gap: 90px;
   grid-row-gap: 50px;
   padding: 50px;

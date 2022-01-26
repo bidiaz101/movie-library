@@ -20,6 +20,16 @@ function App() {
 
   useEffect(() => dispatch(fetchUser()), [])
 
+  useEffect(() => {
+    if(darkMode){
+      document.body.classList.add('body-dark')
+
+      return () => {
+        document.body.classList.remove('body-dark')
+      }
+    }
+  }, [darkMode])
+
   let signInBtns
 
   switch(useLocation().pathname){

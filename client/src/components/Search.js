@@ -44,7 +44,7 @@ function Search(){
             <input type='submit' id={darkMode ? 'button-dark' : null} value='Go!' />
         </form>
         {results.length ? (
-            <div className='grid'>
+            <div className='collection-grid'>
                 {moviesToDisplay}
             </div>
          ) : null}
