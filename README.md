@@ -35,3 +35,5 @@ There is also a dark mode toggle switch once users decide to log in or continue 
 ![dark mode](https://i.imgur.com/6GKSydb.png)
 
 With this app, users can have an online record of their movie collection. 
+
+The app is hosted on Heroku [here](https://super-movie-library.herokuapp.com/).
