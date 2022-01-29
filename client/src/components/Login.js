@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input } from './Signup'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 import { useHistory } from 'react-router-dom'
 
@@ -45,6 +45,8 @@ function Login() {
         })
     }
 
+    const darkMode = useSelector(state => state.user.darkMode)
+
     return (
         <form onSubmit={handleSubmit} >
             <label htmlFor='username'>Username: </label>
@@ -54,7 +56,7 @@ function Login() {
             <Input type={showPw ? 'text' : 'password'} name='password' value={formData.password} onChange={handleChange} />
         
             <div className='button-wrap'>
-                <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
+                <div className={darkMode? 'password-toggle-dark' : 'password-toggle'} onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</div>
             </div>
 
             {error ? <p>{error}</p> : null}

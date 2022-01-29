@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 
 function Signup() {
@@ -57,6 +57,8 @@ function Signup() {
         })
     }
 
+    const darkMode = useSelector(state => state.user.darkMode)
+
     return (
         <form onSubmit={handleSubmit} >
             <label htmlFor='username'>Username: </label>
@@ -71,7 +73,7 @@ function Signup() {
             <Input type={showPw ? 'text' : 'password'} name='password_confirmation' value={formData.password_confirmation} onChange={handleChange} />
             
             <div className='button-wrap'>
-                <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
+                <div className={darkMode? 'password-toggle-dark' : 'password-toggle'} onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</div>
             </div>
 
             {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}

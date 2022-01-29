@@ -72,14 +72,14 @@ h1{
   justify-content: center;
 }
 
-button, input[type='submit']{
+button, input[type='submit'], .password-toggle{
   color: white;
   background-color: #2ce6df;
   padding: 8px;
   border-radius: 7px;
 }
 
-.button-dark, #button-dark, .button-dark-review{
+.button-dark, #button-dark, .button-dark-review, .password-toggle-dark{
   background-color: maroon;
 }
 
