@@ -29,7 +29,7 @@ function MovieCard({
 
     useEffect(() => {
         if(collected){
-            fetch(`https://api.themoviedb.org/3/movie/${omdbId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+            fetch(`tmdb/movie/${omdbId}`)
             .then(resp => resp.json())
             .then(movieData => setThisMovie(movieData))
         }
@@ -75,6 +75,11 @@ function MovieCard({
     const history = useHistory()
 
     function handlePageView(){
+        fetch('/movies', {
+            method: 'POST',
+            headers: { "Content-Type": 'application/json' },
+            body: JSON.stringify({ omdb_id: thisMovie.id })
+        })
         history.push(`/movie/${id}`)
     }
 

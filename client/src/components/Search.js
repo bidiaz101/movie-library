@@ -12,7 +12,7 @@ function Search(){
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${search}&page=1&include_adult=false`)
+        fetch(`tmdb/search/${search}`)
         .then(resp => resp.json())
         .then(data => setResults(data.results))
     }

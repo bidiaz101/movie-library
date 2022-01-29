@@ -10,7 +10,7 @@ function Home({ endpoint }) {
 
     useEffect(() => {
         setStatus('loading')
-        fetch(`https://api.themoviedb.org/3/movie/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+        fetch(`/tmdb/movies/${endpoint}`)
         .then(resp => resp.json())
         .then(data => {
             setMovies(data.results)

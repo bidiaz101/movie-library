@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 function ReviewCard({ review, handleDelete }){
     const stars = useRating(review.score)
 
+    console.log(review.score)
+
     const userId = useSelector(state => state.user.id)
     const darkMode = useSelector(state => state.user.darkMode)
 

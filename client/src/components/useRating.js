@@ -1,7 +1,7 @@
 function useRating(rating){
     let stars = ''
 
-    for(let i = 1; i < rating; i++){
+    for(let i = 1; i <= rating; i++){
         stars += '⭐'
     }
 
