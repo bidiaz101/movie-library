@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import Reviews from './Reviews'
 
 function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
     const [formData, setFormData] = useState({

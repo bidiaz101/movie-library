@@ -5,7 +5,7 @@ import { login } from '../features/user/userSlice'
 import { useHistory } from 'react-router-dom'
 
 function Login() {
-    const [errors, setErrors] = useState([])
+    const [error, setError] = useState('')
     const [showPw, setShowPw] = useState(false)
     const [formData, setFormData] = useState({
         username: '',
@@ -40,7 +40,7 @@ function Login() {
                     history.push('/')
                 })
             } else {
-                resp.json().then(resp => setErrors(resp.error))
+                resp.json().then(resp => setError(resp.error))
             }
         })
     }
@@ -57,7 +57,7 @@ function Login() {
                 <button onClick={() => setShowPw(!showPw)} >{showPw ? "Hide Password": "Show Password"}</button>
             </div>
 
-            {errors.length ? errors.map(error => <p key={error} >{error}</p>) : null}
+            {error ? <p>{error}</p> : null}
 
             <div className='button-wrap'>
                 <input type='submit' value='Log In' />

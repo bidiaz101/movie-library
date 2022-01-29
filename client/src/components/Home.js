@@ -18,22 +18,16 @@ function Home({ endpoint }) {
         })
     }, [endpoint])
 
-    let moviesToDisplay
+    const moviesToDisplay = movies.map(movie => {
 
-    if(movies){
-        moviesToDisplay = movies.map(movie => {
+        // movie.id is the OMDB ID, not my backend ID
 
-            // movie.id is the OMDB ID, not my backend ID
-
-            return <MovieCard key={movie.id} movie={movie} username={username} />
-        })
-    } else {
-        moviesToDisplay = <h1>Loading...</h1>
-    }
+        return <MovieCard key={movie.id} movie={movie} username={username} />
+    })
 
     return (
         <div className='grid'>
-            {moviesToDisplay}
+            {status === 'idle' ? moviesToDisplay : <h1>Loading...</h1>}
         </div>
     )
 }

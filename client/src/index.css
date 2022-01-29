@@ -323,11 +323,11 @@ input:checked[type='checkbox']:before {
 
 #favorite-toggle:before{
   top: 219px;
-  left: 853px;
+  left: 860px;
 }
 
 #favorite-toggle:checked:before{
-  left: 873px;
+  left: 880px;
 }
 
 #credit{

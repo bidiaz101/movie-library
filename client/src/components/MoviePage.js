@@ -9,6 +9,8 @@ function MoviePage() {
 
     const location = useLocation()
 
+    // format location.pathname to only enter id instead of movie/:id
+
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3${location.pathname}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
         .then(resp => resp.json())
