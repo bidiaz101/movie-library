@@ -142,6 +142,10 @@ function App() {
         <Route path='/user-movies'>
           <UserMovies />
         </Route>
+        <Route>
+          <img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />
+          <h1>That page was not found</h1>
+        </Route>
       </Switch>
       <div id='credit'>
         <p><small><a href='https://www.themoviedb.org/' target='_blank' >TMDB</a> is the source all movie data and images. This site has no affiliation with TMDB.</small></p>
