@@ -21,7 +21,7 @@ function MovieCard({
     favorite,
     favoritesArr=[],
     setFavoritesArr
-}){
+}) {
     const [hidden, setHidden] = useState(true)
     const [errors, setErrors] = useState([])
     const [thisMovie, setThisMovie] = useState(movie)
@@ -33,7 +33,7 @@ function MovieCard({
             .then(resp => resp.json())
             .then(movieData => setThisMovie(movieData))
         }
-    }, [])
+    }, [collected, omdbId])
 
     //id is OMDB ID
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = thisMovie
@@ -45,6 +45,9 @@ function MovieCard({
             body: JSON.stringify({ omdb_id: thisMovie.id })
         })
         .then(
+            // id in this fetch request is using the OMDB id
+            // will run regardless of if the movie has been posted already, making it independent on whether the first fetch is successful
+            // Movies can only be posted if their omdb id is unique
             fetch(`/movies/${id}`)
             .then(resp => resp.json())
             .then(movieResp => {
