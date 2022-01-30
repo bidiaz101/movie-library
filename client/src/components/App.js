@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeDarkMode, fetchUser } from '../features/user/userSlice';
-import { logout, continueAsGuest } from '../features/user/userSlice'
+import { logout, login } from '../features/user/userSlice'
 import Login from './Login'
 import UserMovies from './UserMovies';
 import Search from './Search'
@@ -74,7 +74,7 @@ function App() {
     .then(resp => resp.json())
     .then(guestData => {
       history.push('/')
-      dispatch(continueAsGuest(guestData))
+      dispatch(login(guestData))
     })
   }
 

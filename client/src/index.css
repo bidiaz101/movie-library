@@ -86,7 +86,7 @@ button, input[type='submit'], .password-toggle{
 .button-dark-review, .button-review{
   position: relative;
   bottom: 90px;
-  left: 210px;
+  left: 230px;
 }
 
 .button-container{
@@ -323,11 +323,11 @@ input:checked[type='checkbox']:before {
 
 #favorite-toggle:before{
   top: 219px;
-  left: 860px;
+  left: 850px;
 }
 
 #favorite-toggle:checked:before{
-  left: 880px;
+  left: 870px;
 }
 
 #credit{
