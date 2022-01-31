@@ -9,8 +9,7 @@ class UserMoviesController < ApplicationController
     end
 
     def create
-        # check strong params docs
-        movie = Movie.find_or_create_by!(user_movie_params)
+        movie = Movie.find_or_create_by!(omdb_id: params[:movie][:omdb_id])
         user_movie = movie.user_movies.build(user_id: session[:user_id], favorite: false)
         user_movie.save!
         render json: user_movie, status: :created
@@ -30,9 +29,8 @@ class UserMoviesController < ApplicationController
 
     private
 
-    # check params.require docs
     def user_movie_params
-        params.permit(:movie_id, movie_attributes: [ :omdb_id ])
+        params.permit(:favorite)
     end
 
     def authorize

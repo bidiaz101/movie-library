@@ -18,7 +18,7 @@ function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => dispatch(fetchUser()), [])
+  useEffect(() => dispatch(fetchUser()), [dispatch])
 
   useEffect(() => {
     if(darkMode){
@@ -126,7 +126,7 @@ function App() {
         <Route path="/search">
           <Search />
         </Route>
-        <Route path='/movie/'>
+        <Route path='/movies/'>
           <MoviePage />
         </Route>
         <Route path='/signup'>
@@ -148,7 +148,7 @@ function App() {
         </Route>
       </Switch>
       <div id='credit'>
-        <p><small><a href='https://www.themoviedb.org/' target='_blank' >TMDB</a> is the source all movie data and images. This site has no affiliation with TMDB.</small></p>
+        <p><small><a href='https://www.themoviedb.org/' target='_blank' rel="noreferrer">TMDB</a> is the source all movie data and images. This site has no affiliation with TMDB.</small></p>
       </div>
     </div>
   );

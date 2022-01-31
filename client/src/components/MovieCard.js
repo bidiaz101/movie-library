@@ -29,7 +29,7 @@ function MovieCard({
 
     useEffect(() => {
         if(collected){
-            fetch(`tmdb/movie/${omdbId}`)
+            fetch(`tmdb/movies/${omdbId}`)
             .then(resp => resp.json())
             .then(movieData => setThisMovie(movieData))
         }
@@ -38,48 +38,26 @@ function MovieCard({
     //id is OMDB ID
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = thisMovie
 
-    // {
-    //     omdbId: ,
-    //     user_movie: {
-    //         favorite: false
-    //     }
-    // }
-
     function handleAdd(){
-        fetch('/movies', {
+        fetch('/user_movies', {
             method: 'POST',
-            headers: { "Content-Type": 'application/json' },
-            body: JSON.stringify({ omdb_id: thisMovie.id })
-        })
-        .then(
-            // id in this fetch request is using the OMDB id
-            // will run regardless of if the movie has been posted already, making it independent on whether the first post is successful
-            // Movies can only be posted if their omdb id is unique
-            fetch(`/movies/${id}`)
-            .then(resp => resp.json())
-            .then(movieResp => {
-                // id is my DB ID. omdb_id is exactly what you'd think
-                
-                fetch('/user_movies', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        movie_id: movieResp.id,
-                        favorite: false
-                    })
-                })
-                .then(resp => {
-                    if(resp.ok){
-                        setHidden(false)
-                        setTimeout(() => setHidden(true) , 2000)
-                    } else {
-                        resp.json()
-                        .then(data => setErrors(data.error))
-                        setTimeout(() => setErrors([]) , 2000)
-                    }
-                })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                movie: {
+                    omdb_id: id
+                }
             })
-        )
+        })
+        .then(resp => {
+            if(resp.ok){
+                setHidden(false)
+                setTimeout(() => setHidden(true) , 2000)
+            } else {
+                resp.json()
+                .then(data => setErrors(data.error))
+                setTimeout(() => setErrors([]) , 2000)
+            }
+        })
     }
 
     const history = useHistory()
@@ -90,7 +68,7 @@ function MovieCard({
             headers: { "Content-Type": 'application/json' },
             body: JSON.stringify({ omdb_id: thisMovie.id })
         })
-        history.push(`/movie/${id}`)
+        history.push(`/movies/${id}`)
     }
 
     const darkMode = useSelector(state => state.user.darkMode)
@@ -109,7 +87,7 @@ function MovieCard({
         fetch(`/user_movies/${userMovieId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ favorite: !favorite })
+            body: JSON.stringify({ favorite: !favoriteState })
         })
         .then(setFavoriteState(!favoriteState))
         if(!favoriteState){
