@@ -4,13 +4,14 @@ class UserMoviesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
     def index
-        user_movies = UserMovie.where("user_id = ?", session[:user_id])
-        render json: user_movies
+        user = User.find_by!("id = ?", session[:user_id])
+        render json: user.user_movies
     end
 
     def create
-        user_movie = UserMovie.new(user_movie_params)
-        user_movie.user_id = session[:user_id]
+        # check strong params docs
+        movie = Movie.find_or_create_by!(user_movie_params)
+        user_movie = movie.user_movies.build(user_id: session[:user_id], favorite: false)
         user_movie.save!
         render json: user_movie, status: :created
     end
@@ -29,8 +30,9 @@ class UserMoviesController < ApplicationController
 
     private
 
+    # check params.require docs
     def user_movie_params
-        params.permit(:movie_id, :favorite)
+        params.permit(:movie_id, movie_attributes: [ :omdb_id ])
     end
 
     def authorize

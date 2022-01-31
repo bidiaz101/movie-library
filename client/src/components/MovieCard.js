@@ -38,6 +38,13 @@ function MovieCard({
     //id is OMDB ID
     const { id, title, poster_path, release_date, overview, vote_average, vote_count } = thisMovie
 
+    // {
+    //     omdbId: ,
+    //     user_movie: {
+    //         favorite: false
+    //     }
+    // }
+
     function handleAdd(){
         fetch('/movies', {
             method: 'POST',
@@ -46,13 +53,13 @@ function MovieCard({
         })
         .then(
             // id in this fetch request is using the OMDB id
-            // will run regardless of if the movie has been posted already, making it independent on whether the first fetch is successful
+            // will run regardless of if the movie has been posted already, making it independent on whether the first post is successful
             // Movies can only be posted if their omdb id is unique
             fetch(`/movies/${id}`)
             .then(resp => resp.json())
             .then(movieResp => {
                 // id is my DB ID. omdb_id is exactly what you'd think
-
+                
                 fetch('/user_movies', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

@@ -14,11 +14,11 @@ class MoviesController < ApplicationController
     private
 
     def movie_params
-        params.permit(:omdb_id, :vote_count, :vote_average)
+        params.permit(:omdb_id)
     end
 
     def record_not_found
-        render json: { error: "That movie was not found"}, status: 404
+        render json: { error: "That movie was not found" }, status: 404
     end
-
+    
 end

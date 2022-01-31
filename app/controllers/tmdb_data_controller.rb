@@ -1,12 +1,14 @@
 class TmdbDataController < ApplicationController
-    def index
-        tmdb_data = TmdbData.new.get_movies(params[:category])
-        render json: tmdb_data
-    end
-
-    def show
-        tmdb_data = TmdbData.new.get_movie(params[:id])
-        render json: tmdb_data
+    def get_movie_data
+        if params[:endpoint].to_i == 0 
+            # this will run if the endpoint is a string
+            tmdb_data = TmdbData.new.get_movies(params[:endpoint])
+            render json: tmdb_data
+        else
+            # this will run if endpoint is an integer
+            tmdb_data = TmdbData.new.get_movie(params[:endpoint])
+            render json: tmdb_data
+        end
     end
 
     def search
