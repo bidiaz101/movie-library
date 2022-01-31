@@ -143,8 +143,10 @@ function App() {
           <UserMovies />
         </Route>
         <Route>
-          <img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />
-          <h1>That page was not found</h1>
+          <div className='app-wrap'>
+            <img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />
+            <h1>That page was not found</h1>
+          </div>
         </Route>
       </Switch>
       <div id='credit'>

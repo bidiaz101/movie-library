@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 function MoviePage() {
     const [movieData, setMovieData] = useState([])
     const [status, setStatus] = useState('idle')
+    const [errors, setErrors] = useState([])
+    const [hidden, setHidden] = useState(true)
 
     const location = useLocation()
 
@@ -50,6 +52,28 @@ function MoviePage() {
 
     const stars = useRating(vote_average)
 
+    function handleAdd(){
+        fetch('/user_movies', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                movie: {
+                    omdb_id: id
+                }
+            })
+        })
+        .then(resp => {
+            if(resp.ok){
+                setHidden(false)
+                setTimeout(() => setHidden(true) , 2000)
+            } else {
+                resp.json()
+                .then(data => setErrors(data.error))
+                setTimeout(() => setErrors([]) , 2000)
+            }
+        })
+    }
+
     return (
         status === 'loading' ? <h1>Loading...</h1> : (
             <>
@@ -62,6 +86,8 @@ function MoviePage() {
                     <p>{vote_count} votes</p>
                 </div>
                 <div className='column'>
+                    <div id='modal' className={hidden ? 'hidden' : null} >Movie Successfully Added!</div>
+                    <div className={errors.length ? 'error' : 'hidden'}>{errors[0]}</div>
                     <p>Overview: {overview}</p>
                     <ul>
                         {genres ? (
@@ -78,6 +104,8 @@ function MoviePage() {
                             <ul>Produced In: {countries}</ul>
                         </li>
                         ) : null}
+                        <hr />
+                        <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
                     </ul>
                 </div>
                 {id ? <Reviews id={id} /> : null}
