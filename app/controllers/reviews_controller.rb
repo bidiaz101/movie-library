@@ -4,11 +4,12 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def create
-        review = Review.new(review_params)
-        # maybe validate user with find move to app controller inside method there
+        # used find_by because if the user is on the movie page, the movie will have been posted by the movie controller
+        movie = Movie.find_by!(omdb_id: params[:movie][:omdb_id])
+        review = movie.reviews.build(review_params)
         review.user_id = session[:user_id]
         review.save!
-        render json: review
+        render json: review, status: :created
     end
 
     def destroy
@@ -20,7 +21,7 @@ class ReviewsController < ApplicationController
     private
 
     def review_params
-        params.permit(:movie_id, :content, :score)
+        params.permit(:content, :score)
     end
 
     def record_not_found

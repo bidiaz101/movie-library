@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
+    // id is movie omdb_id
+
     const [formData, setFormData] = useState({
         content: '',
         score: 0
@@ -14,31 +16,23 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
         })
     }
 
-    const userId = useSelector(state => state.user.id)
-
     function handleSubmit(e){
         e.preventDefault()
         setIsReviewing(false)
 
-        // One fetch request
-        fetch(`/movies/${id}`)
-        .then(resp => resp.json())
-        .then(movieData => {
-            // movieData.id is my db id
-
-            fetch('/reviews', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    movie_id: movieData.id,
-                    user_id: userId,
-                    content: formData.content,
-                    score: formData.score
-                })
+        fetch(`/reviews`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                movie: {
+                    omdb_id: id
+                },
+                content: formData.content,
+                score: formData.score
             })
-            .then(resp => resp.json())
-            .then(reviewData => setReviews([...reviews, reviewData]))
         })
+        .then(resp => resp.json())
+        .then(reviewData => setReviews([...reviews, reviewData]))
     }
 
     const darkMode = useSelector(state => state.user.darkMode)
