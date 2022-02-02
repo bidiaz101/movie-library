@@ -37,23 +37,13 @@ function Signup() {
             })
         })
         .then(resp => {
-            // one fetch
             if(resp.ok){
-                fetch('/login', {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        username: formData.username.toLowerCase(),
-                        password: formData.password
-                    })
-                })
-                .then(r => r.json())
-                .then(data => {
+                resp.json().then(data => {
                     dispatch(login(data))
                     history.push('/')
                 })
             } else {
-                resp.json().then(resp => setErrors(resp.errors))
+                resp.json().then(resp => setErrors(resp.error))
             }
         })
     }
