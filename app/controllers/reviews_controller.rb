@@ -4,8 +4,7 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def create
-        # used find_by because if the user is on the movie page, the movie will have been posted by the movie controller
-        movie = Movie.find_by!(omdb_id: params[:movie][:omdb_id])
+        movie = Movie.find_or_create_by!(omdb_id: params[:movie][:omdb_id])
         review = movie.reviews.build(review_params)
         review.user_id = session[:user_id]
         review.save!
