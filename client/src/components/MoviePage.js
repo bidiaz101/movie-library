@@ -41,11 +41,11 @@ function MoviePage() {
     let formattedBudget = ''
 
     if(budget){
-        for(let i = 0; i < budget.toString().length; i++){
-            if(i % 3 === 0 && i) {
-                formattedBudget += ',' + budget.toString()[i]
+        for(let i = budget.toString().length - 1; i >= 0; i--){
+            if((formattedBudget.length + 1) % 4 === 0){
+                formattedBudget = budget.toString()[i] + ',' + formattedBudget
             } else {
-                formattedBudget += budget.toString()[i] 
+                formattedBudget = budget.toString()[i] + formattedBudget
             }
         }
     }
