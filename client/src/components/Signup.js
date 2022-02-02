@@ -37,6 +37,7 @@ function Signup() {
             })
         })
         .then(resp => {
+            // one fetch
             if(resp.ok){
                 fetch('/login', {
                     method: "POST",

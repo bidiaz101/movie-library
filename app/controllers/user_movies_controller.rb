@@ -1,7 +1,7 @@
 class UserMoviesController < ApplicationController
     before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def index
         user = User.find_by!("id = ?", session[:user_id])
@@ -31,14 +31,6 @@ class UserMoviesController < ApplicationController
 
     def user_movie_params
         params.permit(:favorite)
-    end
-
-    def authorize
-        render json: {error: "Please log in."}, status: :unauthorized unless session.include? :user_id
-    end
-
-    def invalid_record(invalid)
-        render json: { error: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def record_not_found

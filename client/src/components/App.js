@@ -12,6 +12,7 @@ import Search from './Search'
 import MoviePage from './MoviePage';
 
 function App() {
+  // destructure
   const username = useSelector(state => state.user.username)
   const darkMode = useSelector(state => state.user.darkMode)
   const userId = useSelector(state => state.user.id)

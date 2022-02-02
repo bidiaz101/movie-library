@@ -12,7 +12,7 @@ function Search(){
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`tmdb/search/${search}`)
+        fetch(`/tmdb/search/${search}`)
         .then(resp => resp.json())
         .then(data => setResults(data.results))
     }

@@ -25,10 +25,6 @@ class UsersController < ApplicationController
         params.permit(:username, :password, :password_confirmation, :dark_mode)
     end
 
-    def record_invalid(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-    end
-
     def record_not_found
         render json: { error: "Please log in or sign up" }, status: :unauthorized
     end

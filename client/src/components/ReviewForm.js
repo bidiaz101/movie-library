@@ -20,6 +20,7 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
         e.preventDefault()
         setIsReviewing(false)
 
+        // One fetch request
         fetch(`/movies/${id}`)
         .then(resp => resp.json())
         .then(movieData => {
