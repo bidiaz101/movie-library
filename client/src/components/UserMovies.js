@@ -3,7 +3,7 @@ import DisplayControls from './DisplayControls'
 import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 
-function UserMovies(){
+function UserMovies({ setMoviePageId }){
     const [displayFavorites, setDisplayFavorites] = useState(false)
     const [userMovies, setUserMovies] = useState([])
     const [status, setStatus] = useState('idle')
@@ -41,6 +41,7 @@ function UserMovies(){
             favorite={movieData.favorite}
             favoritesArr={favoritesArr}
             setFavoritesArr={setFavoritesArr}
+            setMoviePageId={setMoviePageId}
         />
     })
 

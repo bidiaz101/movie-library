@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route, Link, useLocation, useHistory } from "react-router-dom";
 import Home from './Home'
 import Navbar from './Navbar'
@@ -88,6 +88,8 @@ function App() {
     .then(dispatch(changeDarkMode()))
   }
 
+  const [moviePageId, setMoviePageId] = useState(0)
+
   return (
     <div>
       <Link to='/'><h1 ><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />Super Movie Library</h1></Link>
@@ -111,22 +113,22 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Home endpoint='popular' />
+          <Home endpoint='popular' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/now-playing">
-          <Home endpoint='now_playing' />
+          <Home endpoint='now_playing' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/top-rated">
-          <Home endpoint='top_rated' />
+          <Home endpoint='top_rated' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/upcoming">
-          <Home endpoint='upcoming' />
+          <Home endpoint='upcoming' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/search">
           <Search />
         </Route>
         <Route path='/movies/'>
-          <MoviePage />
+          <MoviePage moviePageId={moviePageId} />
         </Route>
         <Route path='/signup'>
           <div className='app-wrap'>
@@ -139,7 +141,7 @@ function App() {
           </div>
         </Route>
         <Route path='/user-movies'>
-          <UserMovies />
+          <UserMovies setMoviePageId={setMoviePageId} />
         </Route>
         <Route>
           <div className='app-wrap'>

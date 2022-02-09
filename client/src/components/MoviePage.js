@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import Reviews from './Reviews'
 import useRating from './useRating'
 import { useSelector } from 'react-redux'
 
-function MoviePage() {
+function MoviePage({ moviePageId }) {
     const [movieData, setMovieData] = useState([])
     const [status, setStatus] = useState('idle')
     const [errors, setErrors] = useState([])
     const [hidden, setHidden] = useState(true)
 
-    const location = useLocation()
-
     useEffect(() => {
         setStatus('loading')
-        fetch(`/tmdb${location.pathname}`)
+        fetch(`/tmdb/movies/${moviePageId}`)
         .then(resp => resp.json())
         .then(data => {
             setStatus('idle')
             setMovieData(data)
         })
-    }, [location.pathname])
+    }, [moviePageId])
 
     // id is the OMDB ID
     const { id, title, budget, original_title, release_date, runtime, overview, poster_path, tagline, vote_average, vote_count} = movieData
@@ -37,6 +34,7 @@ function MoviePage() {
     }
 
     const darkMode = useSelector(state => state.user.darkMode)
+    const username = useSelector(state => state.user.username)
 
     let formattedBudget = ''
 
@@ -104,9 +102,13 @@ function MoviePage() {
                             <ul>Produced In: {countries}</ul>
                         </li>
                         ) : null}
-                        <hr />
-                        <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
                     </ul>
+                    <hr />
+                    {username ? (
+                        <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
+                     ) : (
+                        <p>Log in or continue as a guest to add this to a collection!</p>
+                     )}
                 </div>
                 {id ? <Reviews id={id} /> : null}
             </div>

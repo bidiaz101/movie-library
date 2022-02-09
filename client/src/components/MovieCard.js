@@ -20,7 +20,8 @@ function MovieCard({
     userMovieId,
     favorite,
     favoritesArr=[],
-    setFavoritesArr
+    setFavoritesArr,
+    setMoviePageId
 }) {
     const [hidden, setHidden] = useState(true)
     const [errors, setErrors] = useState([])
@@ -69,6 +70,7 @@ function MovieCard({
             body: JSON.stringify({ omdb_id: thisMovie.id })
         })
         history.push(`/movies/${id}`)
+        setMoviePageId(id)
     }
 
     const darkMode = useSelector(state => state.user.darkMode)

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 
-function Home({ endpoint }) {
+function Home({ endpoint, setMoviePageId }) {
     const [movies, setMovies] = useState([])
     const [status, setStatus] = useState('idle')
 
@@ -22,7 +22,7 @@ function Home({ endpoint }) {
 
         // movie.id is the OMDB ID, not my backend ID
 
-        return <MovieCard key={movie.id} movie={movie} username={username} />
+        return <MovieCard key={movie.id} movie={movie} username={username} setMoviePageId={setMoviePageId} />
     })
 
     return (
