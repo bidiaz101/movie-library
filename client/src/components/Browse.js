@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 
-function Home({ endpoint, setMoviePageId }) {
+function Browse({ endpoint, setMoviePageId }) {
     const [movies, setMovies] = useState([])
     const [status, setStatus] = useState('idle')
 
@@ -32,4 +32,4 @@ function Home({ endpoint, setMoviePageId }) {
     )
 }
 
-export default Home
+export default Browse

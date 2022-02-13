@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, Link, useLocation, useHistory } from "react-router-dom";
-import Home from './Home'
+import Browse from './Browse'
 import Navbar from './Navbar'
 import Signup from './Signup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -113,16 +113,16 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Home endpoint='popular' setMoviePageId={setMoviePageId} />
+          <Browse endpoint='popular' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/now-playing">
-          <Home endpoint='now_playing' setMoviePageId={setMoviePageId} />
+          <Browse endpoint='now_playing' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/top-rated">
-          <Home endpoint='top_rated' setMoviePageId={setMoviePageId} />
+          <Browse endpoint='top_rated' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/upcoming">
-          <Home endpoint='upcoming' setMoviePageId={setMoviePageId} />
+          <Browse endpoint='upcoming' setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/search">
           <Search />
