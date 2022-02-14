@@ -38,7 +38,7 @@ body {
   }
 }
 
-#option-dark{
+#option-dark, .endpoint-dark, .endpoint-dark *{
   color: black;
 }
 

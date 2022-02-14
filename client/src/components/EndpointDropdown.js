@@ -7,7 +7,7 @@ function EndpointDropdown({ setEndpoint }){
     return(
         <form>
             <label htmlFor='dropdown'>Select Movies to See:</label>
-            <select name='dropdown' onChange={e => setEndpoint(e.target.value)} id={darkMode ? 'collection-dark' : null}>
+            <select name='dropdown' onChange={e => setEndpoint(e.target.value)} className={darkMode ? 'endpoint-dark' : null}>
                 <option value='popular'>Popular</option>
                 <option value='now_playing'>Now Playing</option>
                 <option value='top_rated'>Top Rated</option>
