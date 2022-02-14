@@ -10,6 +10,7 @@ import Login from './Login'
 import UserMovies from './UserMovies';
 import Search from './Search'
 import MoviePage from './MoviePage';
+import Home from './Home';
 
 function App() {
   const { username, darkMode } = useSelector(state => state.user)
@@ -113,7 +114,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <h1>Home page under construction</h1>
+          <Home />
         </Route>
         <Route path="/browse">
           <Browse setMoviePageId={setMoviePageId} />
