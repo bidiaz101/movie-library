@@ -113,16 +113,10 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Browse endpoint='popular' setMoviePageId={setMoviePageId} />
+          <h1>Home page under construction</h1>
         </Route>
-        <Route path="/now-playing">
-          <Browse endpoint='now_playing' setMoviePageId={setMoviePageId} />
-        </Route>
-        <Route path="/top-rated">
-          <Browse endpoint='top_rated' setMoviePageId={setMoviePageId} />
-        </Route>
-        <Route path="/upcoming">
-          <Browse endpoint='upcoming' setMoviePageId={setMoviePageId} />
+        <Route path="/browse">
+          <Browse setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/search">
           <Search />

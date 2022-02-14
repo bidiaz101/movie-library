@@ -9,9 +9,7 @@ function Navbar() {
 
     return (
         <nav className={darkMode ? 'nav-dark' : null}>
-            <LinkElem to="/now-playing">Now Playing</LinkElem>
-            <LinkElem to='/top-rated'>Top Rated</LinkElem>
-            <LinkElem to='/upcoming'>Upcoming</LinkElem>
+            <LinkElem to="/browse">Browse</LinkElem>
             <LinkElem to='/search'>Search</LinkElem>
             {username ? (
                 <LinkElem to='/user-movies'>My Collection</LinkElem>
