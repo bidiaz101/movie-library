@@ -126,6 +126,14 @@ button, input[type='submit'], .password-toggle{
   padding: 50px;
 }
 
+.collection-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-column-gap: 90px;
+  grid-row-gap: 50px;
+  padding: 50px;
+}
+
 @media screen and (max-width: 700px){
   .grid{
     display: grid;
@@ -136,9 +144,18 @@ button, input[type='submit'], .password-toggle{
     padding: 20px;
     margin-left: 30px;
   }
+
+  .collection-grid{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 90px;
+    grid-row-gap: 50px;
+    padding: 20px;
+    margin-left: 20%;
+  }
 }
 
-@media screen and (min-width: 700px) and (max-width: 800px){
+@media screen and (min-width: 700px) and (max-width: 1000px){
   .grid{
     display: grid;
     grid-template-columns: 50% 50%;
@@ -148,18 +165,39 @@ button, input[type='submit'], .password-toggle{
     padding: 20px;
     margin-left: 30px;
   }
+
+  .collection-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-column-gap: 0;
+    grid-row-gap: 50px;
+    padding: 10%;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px){
+  .grid{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: repeat(10, 10%);
+    grid-column-gap: 0;
+    grid-row-gap: 120px;
+    padding: 20px;
+    margin-left: 30px;
+  }
+
+  .collection-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    padding: 50px;
+    margin-left: 10px;
+  }
 }
 
 .grid-parent{
   justify-content: start;
-}
-
-.collection-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 20%);
-  grid-column-gap: 90px;
-  grid-row-gap: 50px;
-  padding: 50px;
 }
 
 nav{
