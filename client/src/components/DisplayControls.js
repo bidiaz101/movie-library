@@ -13,7 +13,10 @@ function DisplayControls({ displayFavorites, setDisplayFavorites }){
         <form id={darkMode ? 'collection-dark' : null} className='collection-controls'>
             <h3>Show Favorites</h3>
             <div className='app-wrap'>
-                <input type='checkbox' id='favorite-toggle' checked={displayFavorites} onChange={handleChange} />
+                <label className='switch'>
+                    <input type='checkbox' id='favorite-toggle' checked={displayFavorites} onChange={handleChange} />
+                    <span className='slider'></span>
+                </label>
             </div>
         </form>
     )

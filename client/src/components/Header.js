@@ -70,7 +70,7 @@ function Header (){
     }
 
     return (
-        <div>
+        <div className='header-container'>
             <div className='title-container'>
                 <Link to='/'><h1><img id={darkMode ? 'logo-dark' : null} className='logo' src={require ('../logo.png')} alt='logo' />Super Movie Library</h1></Link>
             </div>
@@ -80,7 +80,10 @@ function Header (){
                     <p>{`Hey there, ${username}!`}</p>
                     <div>
                         <label htmlFor='darkMode' className='dark-mode-label'>{darkMode? 'Dark Mode:' : 'Light Mode'}</label>
-                        <input type='checkbox' name='darkMode' checked={darkMode} onChange={handleChange} /> 
+                        <label className='switch'>
+                            <input type='checkbox' name='darkMode' checked={darkMode} onChange={handleChange} /> 
+                            <span className='slider' />
+                        </label>
                     </div>
                     <button className={darkMode ? 'button-dark': null} onClick={handleLogout}>Logout</button>
                     </> 

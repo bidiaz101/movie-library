@@ -54,7 +54,9 @@ function UserMovies({ setMoviePageId }){
     return (
         <div className='grid-parent'>
             <DisplayControls displayFavorites={displayFavorites} setDisplayFavorites={setDisplayFavorites} />
-            {status === 'loading' ? <h1>Loading...</h1> : idleContent}
+            <div className='grid-container'>
+                {status === 'loading' ? <h1>Loading...</h1> : idleContent}
+            </div>
         </div>
     )
 }
