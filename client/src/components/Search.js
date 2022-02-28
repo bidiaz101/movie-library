@@ -31,6 +31,10 @@ function Search(){
 
     const darkMode = useSelector(state => state.user.darkMode)
 
+    const noResults = typeof results[0] === 'string' ? (
+        <div className='app-wrap'><h1>{results[0]}</h1></div>
+     ) : null;
+
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -38,14 +42,16 @@ function Search(){
             <input id={darkMode ? 'option-dark' : null} type='text' onChange={handleChange} name='search' />
             <input type='submit' id={darkMode ? 'button-dark' : null} value='Go!' />
         </form>
+        
         {displayError ? <div className='app-wrap'><h1>Please enter a search term</h1></div> : null}
-        {results.length ? (
+
+        {results.length && typeof results[0] !== 'string' ? (
             <div className='grid-container'>
                 <div className='collection-grid'>
                     {moviesToDisplay}
                 </div>
             </div>
-         ) : <div className='app-wrap'><h1>No movies found</h1></div>}
+         ) : noResults}
         </>
 
     )

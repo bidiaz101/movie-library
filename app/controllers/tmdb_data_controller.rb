@@ -13,6 +13,10 @@ class TmdbDataController < ApplicationController
 
     def search
         tmdb_data = TmdbData.new.search_movies(params[:query])
-        render json: tmdb_data
+        if tmdb_data['results'].length != 0
+            render json: tmdb_data
+        else
+            render json: { results: ["There are no matching movies"] }
+        end
     end
 end
