@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 function Search(){
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
+    const [displayError, setDisplayError] = useState(false)
 
     function handleChange(e){
         setSearch(e.target.value)
@@ -12,14 +13,19 @@ function Search(){
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch(`/tmdb/search/${search}`)
-        .then(resp => resp.json())
-        .then(data => setResults(data.results))
+        if(search){
+            fetch(`/tmdb/search/${search}`)
+            .then(resp => resp.json())
+            .then(data => setResults(data.results))
+        } else {
+            setDisplayError(true)
+            setTimeout(() => setDisplayError(false), 3000)
+        }
     }
 
     const username = useSelector(state => state.user.username)
 
-    const moviesToDisplay = results.map(movie => {
+    let moviesToDisplay = results.map(movie => {
         return <MovieCard key={movie.id} movie={movie} username={username} />
     })
 
@@ -32,6 +38,7 @@ function Search(){
             <input id={darkMode ? 'option-dark' : null} type='text' onChange={handleChange} name='search' />
             <input type='submit' id={darkMode ? 'button-dark' : null} value='Go!' />
         </form>
+        {displayError ? <div className='app-wrap'><p>Please enter a search term</p></div> : null}
         {results.length ? (
             <div className='grid-container'>
                 <div className='collection-grid'>
