@@ -33,8 +33,10 @@ function Search(){
             <input type='submit' id={darkMode ? 'button-dark' : null} value='Go!' />
         </form>
         {results.length ? (
-            <div className='collection-grid'>
-                {moviesToDisplay}
+            <div className='grid-container'>
+                <div className='collection-grid'>
+                    {moviesToDisplay}
+                </div>
             </div>
          ) : null}
         </>
