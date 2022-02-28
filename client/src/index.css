@@ -146,6 +146,11 @@ button, input[type='submit'], .password-toggle{
     margin-left: 10px;
   }
 
+  .grid-container{
+    display: flex;
+    justify-content: center;
+  }
+
   .collection-grid{
     display: grid;
     grid-template-columns: 100%;

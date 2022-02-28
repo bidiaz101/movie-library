@@ -32,8 +32,10 @@ function Browse({ setMoviePageId }) {
     return (
         <>
         <EndpointDropdown setEndpoint={setEndpoint} />
-        <div className='grid'>
-            {status === 'idle' ? moviesToDisplay : <h1>Loading...</h1>}
+        <div className='grid-container' >
+            <div className='grid'>
+                {status === 'idle' ? moviesToDisplay : <h1>Loading...</h1>}
+            </div>
         </div>
         </>
     )
