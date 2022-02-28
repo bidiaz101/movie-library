@@ -121,7 +121,7 @@ function MovieCard({
                     <p>Average Rating: {vote_average}</p>
                     <p>{useRating(vote_average)}</p>
                     <p>Votes: {vote_count}</p>
-                    {collected ? <div onClick={handleFavorite}>{heart}</div> : null}
+                    {collected ? <div onClick={handleFavorite} className='favorite-heart' >{heart}</div> : null}
                     <div className='button-wrap'>
                         {username ? (
                             collectionBtn

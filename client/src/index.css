@@ -77,6 +77,7 @@ button, input[type='submit'], .password-toggle{
   background-color: #2ce6df;
   padding: 8px;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 .button-dark, #button-dark, .button-dark-review, .password-toggle-dark{
@@ -364,6 +365,7 @@ input[type="checkbox"] {
   transition: 0.5s;
   width: 40px;
   height: 20px;
+  cursor: pointer;
 }
 
 input:checked[type='checkbox']{
@@ -395,6 +397,10 @@ input:checked[type='checkbox']:before {
 
 #favorite-toggle:checked:before{
   left: 870px;
+}
+
+.favorite-heart{
+  cursor: pointer;
 }
 
 #credit{
