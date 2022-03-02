@@ -43,7 +43,7 @@ function App() {
           <Browse setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/search">
-          <Search />
+          <Search setMoviePageId={setMoviePageId} />
         </Route>
         <Route path='/movies/'>
           <MoviePage moviePageId={moviePageId} />

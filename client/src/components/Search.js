@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 
-function Search(){
+function Search({ setMoviePageId }){
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
     const [displayError, setDisplayError] = useState(false)
@@ -26,7 +26,7 @@ function Search(){
     const username = useSelector(state => state.user.username)
 
     let moviesToDisplay = results.map(movie => {
-        return <MovieCard key={movie.id} movie={movie} username={username} />
+        return <MovieCard key={movie.id} movie={movie} username={username} setMoviePageId={setMoviePageId} />
     })
 
     const darkMode = useSelector(state => state.user.darkMode)
