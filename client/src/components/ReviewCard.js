@@ -15,8 +15,8 @@ function ReviewCard({ review, handleDelete }){
             <div>
                 <p>{stars}</p>
                 <h3>"{review.content}" - {review.user.username}</h3>
+                {userId === review.user.id ? <button className={buttonclassName} onClick={() => handleDelete(review.id)} >Delete Review</button> : null}
             </div>
-            {userId === review.user.id ? <button className={buttonclassName} onClick={() => handleDelete(review.id)} >X</button> : null}
             <hr />
         </div>
     )
