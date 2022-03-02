@@ -1,7 +1,9 @@
-import React from 'react'
-import MovieCard from './MovieCard'
+import React, { useState } from 'react'
+import MovieExample from './MovieExample'
 
-function Home(){
+function Home({ setMoviePageId }){
+    const [userScore, setUserScore] = useState(10)
+
     return (
         <div className='home'>
             <h2>What is Super Movie Library? (SML)</h2>
@@ -10,10 +12,13 @@ function Home(){
             <p>Without logging in, you can you browse movies to see what's playing in theaters, most popular, best rated, etc. Click the "View Movie Page" button on the movie to see more info about a certain movie.</p>
             <br />
             <p>The movie will appear in cards like this!</p>
+            <div className='app-wrap'>
+                <MovieExample userScore={userScore} setUserScore={setUserScore} setMoviePageId={setMoviePageId} />
+            </div>
 
-            {/* <div className='app-wrap'>
-                <MovieCard collected={true} omdbId={550} />
-            </div> */}
+            <form>
+                <input type='number' style={{color: 'black'}} min='0' max='10' name='score' value={userScore} onChange={e => setUserScore(e.target.value)} />
+            </form>
 
             <p>See the video walkthrough below to learn more!</p>
             <iframe className='home-video' src="https://www.youtube.com/embed/4Qoii_8cGOs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

@@ -37,7 +37,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home setMoviePageId={setMoviePageId} />
         </Route>
         <Route path="/browse">
           <Browse setMoviePageId={setMoviePageId} />
