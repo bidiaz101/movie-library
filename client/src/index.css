@@ -167,9 +167,34 @@ button, input[type='submit'], .password-toggle{
   }
 }
 
+.movie-page{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1fr;
+}
+
+#movie-page-card{
+  margin-left: 50px;
+}
+
 @media screen and (max-width: 830px) {
   .button-container{
     position: static;
+  }
+
+  .movie-page{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 15px;
+  }
+
+  .column{
+    margin-right: 20px;
+  }
+
+  .review-page{
+    margin-right: 20px;
   }
 }
 
@@ -298,17 +323,7 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   height: 50px;
 }
 
-.movie-page{
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 1fr;
-}
-
 .review-page{
-  margin-left: 50px;
-}
-
-#movie-page-card{
   margin-left: 50px;
 }
 
