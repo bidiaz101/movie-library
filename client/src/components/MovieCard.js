@@ -106,7 +106,7 @@ function MovieCard({
         <div className='flip-card'>
             <div id='modal' className={hidden ? 'hidden' : null} >Movie Successfully Added!</div>
             <div className={errors.length ? 'error' : 'hidden'}>{errors[0]}</div>
-            <div id={darkMode? 'flip-card-inner-dark' :null} className='flip-card-inner'>
+            <div id={darkMode? 'flip-card-inner-dark' : null} className='flip-card-inner'>
                 <div className='flip-card-front'>
                     <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title + ' poster'} style={{ width: '100%' }} />
                     <div>
