@@ -14,7 +14,6 @@ function MovieExample({ userScore, setMoviePageId }){
         vote_average: 0,
         vote_count: 0
     })
-    const [hidden, setHidden] = useState(true)
 
     const stars = useRating(userScore)
 
@@ -38,14 +37,8 @@ function MovieExample({ userScore, setMoviePageId }){
         setMoviePageId(id)
     }
 
-    function handleAdd(){
-        setHidden(false)
-        setTimeout(() => setHidden(true) , 2000)
-    }
-
     return (
         <div className='flip-card'>
-            <div id='modal' className={hidden ? 'hidden' : null} >You'll get a notification like this when a movie is added to your collection!</div>
             <div id={darkMode? 'flip-card-inner-dark' :null} className='flip-card-inner'>
                 <div className='flip-card-front'>
                     <div className='flip-card-front'>
@@ -63,9 +56,8 @@ function MovieExample({ userScore, setMoviePageId }){
                     <p>Average Rating: {vote_average}</p>
                     <p>{stars}</p>
                     <p>Votes: {vote_count}</p>
-                    <div><p onClick={() => setHeart(!heart)} className='favorite-heart'>{heart ? '💗' : '♡' } Click Me!</p></div>
+                    <div onClick={() => setHeart(!heart)} className='favorite-heart'>{heart ? '💗' : '♡' } Click Me!</div>
                     <div className='button-wrap'>
-                        <button id='card-button-uncollected' onClick={handleAdd}>Add to Collection</button>
                         <button className={darkMode ? 'button-dark': null} onClick={handlePageView}>View Movie Page</button>
                     </div>
                 </div>

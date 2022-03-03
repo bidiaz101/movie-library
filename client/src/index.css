@@ -66,6 +66,11 @@ h1{
   align-items: center;
 }
 
+#home-example{
+  height: 650px;
+  align-items: flex-start;
+}
+
 .button-wrap{
   padding: 10px;
   display: flex;

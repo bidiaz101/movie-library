@@ -12,12 +12,13 @@ function Home({ setMoviePageId }){
             <p>Without logging in, you can you browse movies to see what's playing in theaters, most popular, best rated, etc. Click the "View Movie Page" button on the movie to see more info about a certain movie.</p>
             <br />
             <p>The movie will appear in cards like this!</p>
-            <div className='app-wrap'>
+            <div id='home-example' className='app-wrap'>
                 <MovieExample userScore={userScore} setUserScore={setUserScore} setMoviePageId={setMoviePageId} />
             </div>
 
             <form>
-                <input type='number' style={{color: 'black'}} min='0' max='10' name='score' value={userScore} onChange={e => setUserScore(e.target.value)} />
+                <label htmlFor='rating'>Change the rating to see how it'll appear:</label>
+                <input type='number' name='rating' style={{color: 'black'}} min='0' max='10' name='score' value={userScore} onChange={e => setUserScore(e.target.value)} />
             </form>
 
             <p>See the video walkthrough below to learn more!</p>
