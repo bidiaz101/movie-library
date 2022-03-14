@@ -18,7 +18,7 @@ function Home({ setMoviePageId }){
 
             <form>
                 <label htmlFor='score'>Change the rating to see how it'll appear:</label>
-                <input type='number' style={{color: 'black'}} min='0' max='10' name='score' value={userScore} onChange={e => setUserScore(e.target.value)} />
+                <input type='number' style={{color: 'black'}} min='0' max='10' name='score' value={userScore} onChange={e => setUserScore(e.target.value > 10 ? 10 : e.target.value)} />
             </form>
 
             <p>Add movies to your collection, search movies by title, leave reviews, and more!</p>
