@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'uploads/prepare'
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
   resources 'users', only: [:update]
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   resources 'movies', only: [:show, :create]
 
   resources 'reviews', only: [:create, :destroy]
+
+  post 'uploads/prepare'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
