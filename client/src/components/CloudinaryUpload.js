@@ -25,7 +25,6 @@ function CloudinaryUpload({ preset, handleUpload, buttonText }){
         },
         (error, result) => {
             if(!error && result && result.event === 'success'){
-                console.log("Done! Here is the image info: ", result.info);
                 handleUpload && handleUpload(result);
                 window.myWidget.close();
             }

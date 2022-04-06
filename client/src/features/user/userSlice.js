@@ -19,6 +19,9 @@ export const userSlice = createSlice({
             state.id = action.payload.id
             state.username = action.payload.username
             state.darkMode = action.payload.dark_mode
+            state.thumbnail = action.payload.profile_picture_thumbnail_url
+            state.profilePic = action.payload.profile_picture_url
+            state.cloudinaryPublicId = action.payload.cloudinary_public_id
         },
         changeDarkMode(state) {
             state.darkMode = !state.darkMode
@@ -27,10 +30,14 @@ export const userSlice = createSlice({
             state.id = 0
             state.username = ''
             state.darkMode = false
+            state.thumbnail = ''
+            state.profilePic = ''
+            state.cloudinaryPublicId = ''
         },
         updateProfilePic(state, action){
             state.thumbnail = action.payload.profile_picture_thumbnail_url
             state.profilePic = action.payload.profile_picture_url
+            state.cloudinaryPublicId = action.payload.cloudinary_public_id
         }
     },
     extraReducers: {
@@ -43,7 +50,7 @@ export const userSlice = createSlice({
             state.darkMode = action.payload.dark_mode
             state.thumbnail = action.payload.profile_picture_thumbnail_url
             state.profilePic = action.payload.profile_picture_url
-
+            state.cloudinaryPublicId = action.payload.cloudinary_public_id
             state.status = 'idle'
         }
     }
