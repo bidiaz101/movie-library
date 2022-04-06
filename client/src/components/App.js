@@ -11,6 +11,7 @@ import Search from './Search'
 import MoviePage from './MoviePage';
 import Header from './Header'
 import Home from './Home';
+import Profile from './Profile'
 
 function App() {
   const { darkMode } = useSelector(state => state.user)
@@ -60,6 +61,9 @@ function App() {
         </Route>
         <Route path='/user-movies'>
           <UserMovies setMoviePageId={setMoviePageId} />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
         </Route>
         <Route>
           <div className='app-wrap'>
