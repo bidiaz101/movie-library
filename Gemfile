@@ -52,3 +52,5 @@ gem "active_model_serializers", "~> 0.10.12"
 gem 'httparty'
 
 gem 'figaro'
+
+gem "cloudinary", "~> 1.23"

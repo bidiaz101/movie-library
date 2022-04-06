@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_115210) do
+ActiveRecord::Schema.define(version: 2022_04_06_021105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 2022_01_23_115210) do
     t.boolean "dark_mode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_picture_url"
+    t.string "profile_picture_thumbnail_url"
+    t.string "cloudinary_public_id"
   end
 
 end
