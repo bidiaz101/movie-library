@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { logout, login } from '../features/user/userSlice'
-import { changeDarkMode } from '../features/user/userSlice';
+import { logout, login, changeDarkMode } from '../features/user/userSlice'
 
 
 function Header (){

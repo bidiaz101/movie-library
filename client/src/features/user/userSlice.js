@@ -27,6 +27,10 @@ export const userSlice = createSlice({
             state.id = 0
             state.username = ''
             state.darkMode = false
+        },
+        updateProfilePic(state, action){
+            state.thumbnail = action.payload.profile_picture_thumbnail_url
+            state.profilePic = action.payload.profile_picture_url
         }
     },
     extraReducers: {
@@ -45,6 +49,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const { login, changeDarkMode, logout } = userSlice.actions
+export const { login, changeDarkMode, logout, updateProfilePic } = userSlice.actions
 
 export default userSlice.reducer
