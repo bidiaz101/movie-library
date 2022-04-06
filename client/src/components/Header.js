@@ -77,7 +77,7 @@ function Header (){
             <div className='button-container'>
                 {username ? (
                     <>
-                    <p>{`Hey there, ${username}!`}</p>
+                    <p>Hey there, <Link to='/profile'>{username}</Link>!</p>
                     <div>
                         <label htmlFor='darkMode' className='dark-mode-label'>{darkMode? 'Dark Mode:' : 'Light Mode'}</label>
                         <label className='switch'>

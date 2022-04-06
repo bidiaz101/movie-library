@@ -37,6 +37,9 @@ export const userSlice = createSlice({
             state.id = action.payload.id
             state.username = action.payload.username
             state.darkMode = action.payload.dark_mode
+            state.thumbnail = action.payload.profile_picture_thumbnail_url
+            state.profilePic = action.payload.profile_picture_url
+
             state.status = 'idle'
         }
     }
