@@ -7,8 +7,6 @@ import { logout, login, changeDarkMode } from '../features/user/userSlice'
 function Header (){
     const { username, darkMode, thumbnail } = useSelector(state => state.user)
     const userId = useSelector(state => state.user.id)
-    const user = useSelector(state => state.user)
-    console.log(user)
 
     const dispatch = useDispatch()
     const history = useHistory()
