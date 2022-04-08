@@ -336,6 +336,14 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
   margin-left: 50px;
 }
 
+.review-content{
+  display: flex;
+}
+
+.review-content *{
+  padding: 10px;
+}
+
 .column{
   margin-left: 50px;
 }
