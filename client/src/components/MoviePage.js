@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Reviews from './Reviews'
 import useRating from './useRating'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 function MoviePage({ moviePageId }) {
     const [movieData, setMovieData] = useState([])
@@ -9,9 +10,11 @@ function MoviePage({ moviePageId }) {
     const [errors, setErrors] = useState([])
     const [hidden, setHidden] = useState(true)
 
+    const location = useLocation()
+
     useEffect(() => {
         setStatus('loading')
-        fetch(`/tmdb/movies/${moviePageId}`)
+        fetch(`/tmdb/movies/${moviePageId || location.pathname.slice(8)}`)
         .then(resp => resp.json())
         .then(data => {
             setStatus('idle')
