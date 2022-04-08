@@ -337,7 +337,8 @@ button:hover, #card-button-uncollected:hover, #card-button-collected:hover {
 }
 
 .review-content{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
 }
 
 .review-content *{
