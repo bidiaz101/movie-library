@@ -94,11 +94,15 @@ button, input[type='submit'], .password-toggle{
   top: 30px;
   right: 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
   align-items: center;
   padding: 10px;
+}
+
+.pfp-thumbnail{
+  border-radius: 60px;
 }
 
 .collection-controls{

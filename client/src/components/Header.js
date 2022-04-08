@@ -5,8 +5,10 @@ import { logout, login, changeDarkMode } from '../features/user/userSlice'
 
 
 function Header (){
-    const { username, darkMode } = useSelector(state => state.user)
+    const { username, darkMode, thumbnail } = useSelector(state => state.user)
     const userId = useSelector(state => state.user.id)
+    const user = useSelector(state => state.user)
+    console.log(user)
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -77,6 +79,7 @@ function Header (){
                 {username ? (
                     <>
                     <p>Hey there, <Link to='/profile'>{username}</Link>!</p>
+                    <img src={thumbnail || "https://res.cloudinary.com/dimt84h2m/image/upload/c_fill,g_faces,h_60,w_60/v1649397503/SML_profile_pictures/npmrfmboeuuz8sokvwqe.jpg"} alt='profile pic thumbnail' className='pfp-thumbnail' />
                     <div>
                         <label htmlFor='darkMode' className='dark-mode-label'>{darkMode? 'Dark Mode:' : 'Light Mode'}</label>
                         <label className='switch'>
