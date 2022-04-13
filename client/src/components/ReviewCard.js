@@ -9,8 +9,6 @@ function ReviewCard({ review, handleDelete }){
     const darkMode = useSelector(state => state.user.darkMode)
 
     const buttonclassName = darkMode ? 'button-dark-review': 'button-review'
-
-    console.log(review)
     
     return (
          <div>

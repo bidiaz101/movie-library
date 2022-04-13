@@ -17,11 +17,48 @@ function MovieExample({ userScore, setMoviePageId }){
 
     const stars = useRating(userScore)
 
+    let movieId
+
+    switch(userScore){
+        case '9':
+            movieId = '634649'
+            break;
+        case '8':
+            movieId = '568124'
+            break;
+        case '7':
+            movieId = '585083'
+            break;
+        case '6':
+            movieId = '752623'
+            break;
+        case '5':
+            movieId = '512195'
+            break;
+        case '4':
+            movieId = '299537'
+            break;
+        case '3':
+            movieId = '9312'
+            break;
+        case '2':
+            movieId = '644495'
+            break;
+        case '1':
+            movieId = '11324'
+            break;
+        case '0':
+            movieId = '4515'
+            break;
+        default:
+            movieId = '10681'
+    }
+
     useEffect(() => {
-        fetch('tmdb/movies/10681')
+        fetch(`tmdb/movies/${movieId}`)
             .then(resp => resp.json())
             .then(movieData => setExampleMovie(movieData))
-    }, [])
+    }, [movieId])
 
     const { id, title, poster_path, overview, vote_average, vote_count } = exampleMovie
 
