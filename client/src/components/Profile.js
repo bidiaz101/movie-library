@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateProfilePic } from '../features/user/userSlice'
 
 function Profile(){
-    const { id, username, profilePic, thumbnail } = useSelector(state => state.user)
+    const { id, username, profilePic } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -26,9 +26,10 @@ function Profile(){
     }
 
     return (
-        <div className="grid sm:grid-cols-3 gap-4">
-            <div className="">
-                <img src={profilePic || "https://res.cloudinary.com/dimt84h2m/image/upload/v1649265828/Profile_avatar_placeholder_large_ky4gfw_wlukfb.png"} />
+        <div className="profile-grid">
+            <div>
+                <img src={profilePic || "https://res.cloudinary.com/dimt84h2m/image/upload/v1649265828/Profile_avatar_placeholder_large_ky4gfw_wlukfb.png"} alt={`${username}'s profile picture`} className='pfp' />
+                <br />
                 <CloudinaryUpload
                     preset="ncp1k6i2"
                     buttonText="Update Profile Picture"

@@ -472,6 +472,26 @@ input:checked + .slider:before {
   margin-right: 10px;
 }
 
+.profile-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 20px;
+  padding: 10px;
+}
+
+.pfp{
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  grid-column-start: span 2;
+}
+
+.col-span-2{
+  grid-column-start: span 2;
+  grid-column-end: 3;
+}
+
 #credit{
   position: relative;
   top: 80px;
