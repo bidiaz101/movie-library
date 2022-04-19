@@ -18,7 +18,6 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing, setErrors }){
 
     function handleSubmit(e){
         e.preventDefault()
-        setIsReviewing(false)
 
         fetch(`/reviews`, {
             method: 'POST',
@@ -35,9 +34,13 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing, setErrors }){
             if(resp.ok){
                 resp.json()
                 .then(reviewData => setReviews([...reviews, reviewData]))
+                setIsReviewing(false)
             } else {
                 resp.json()
-                .then(errorMsgs => setErrors(errorMsgs))
+                .then(errorObj => {
+                    setErrors(errorObj.error)
+                    setTimeout(() => setErrors([]) , 2000)
+                })
             }
         })
     }
