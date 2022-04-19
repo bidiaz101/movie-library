@@ -28,7 +28,7 @@ function Profile(){
     return (
         <div className="profile-grid">
             <div>
-                <img src={profilePic || "https://res.cloudinary.com/dimt84h2m/image/upload/v1649265828/Profile_avatar_placeholder_large_ky4gfw_wlukfb.png"} alt={`${username}'s profile picture`} className='pfp' />
+                <img src={profilePic || "https://res.cloudinary.com/dimt84h2m/image/upload/v1649265828/Profile_avatar_placeholder_large_ky4gfw_wlukfb.png"} alt={`${username}`} className='pfp' />
                 <br />
                 <CloudinaryUpload
                     preset="ncp1k6i2"

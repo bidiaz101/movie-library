@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import ReviewForm from './ReviewForm'
 import ReviewCard from './ReviewCard'
 
-function Reviews({ id }){
+function Reviews({ id, setErrors }){
     // id is OMDB id
 
     const [reviews, setReviews] = useState([])
@@ -46,7 +46,13 @@ function Reviews({ id }){
                 <br />
                 {isReviewing ? (
                     <div>
-                        <ReviewForm id={id} reviews={reviews} setReviews={setReviews} setIsReviewing={setIsReviewing} />
+                        <ReviewForm 
+                            id={id} 
+                            reviews={reviews} 
+                            setReviews={setReviews} 
+                            setIsReviewing={setIsReviewing}
+                            setErrors={setErrors} 
+                        />
                     </div> 
                 ) : reviewOption}
 

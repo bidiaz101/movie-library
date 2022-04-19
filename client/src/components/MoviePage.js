@@ -113,7 +113,7 @@ function MoviePage({ moviePageId }) {
                         <p>Log in or continue as a guest to add this to a collection!</p>
                      )}
                 </div>
-                {id ? <Reviews id={id} /> : null}
+                {id ? <Reviews id={id} setErrors={setErrors} /> : null}
             </div>
             </>
         )

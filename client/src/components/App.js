@@ -16,6 +16,9 @@ import Profile from './Profile'
 function App() {
   const { darkMode } = useSelector(state => state.user)
 
+  const user = useSelector(state => state.user)
+  console.log(user)
+
   const dispatch = useDispatch()
 
   useEffect(() => dispatch(fetchUser()), [dispatch])

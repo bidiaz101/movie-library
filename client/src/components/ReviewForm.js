@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
+function ReviewForm({ id, reviews, setReviews, setIsReviewing, setErrors }){
     // id is movie omdb_id
 
     const [formData, setFormData] = useState({
@@ -31,8 +31,15 @@ function ReviewForm({ id, reviews, setReviews, setIsReviewing }){
                 score: formData.score
             })
         })
-        .then(resp => resp.json())
-        .then(reviewData => setReviews([...reviews, reviewData]))
+        .then(resp => {
+            if(resp.ok){
+                resp.json()
+                .then(reviewData => setReviews([...reviews, reviewData]))
+            } else {
+                resp.json()
+                .then(errorMsgs => setErrors(errorMsgs))
+            }
+        })
     }
 
     const darkMode = useSelector(state => state.user.darkMode)
