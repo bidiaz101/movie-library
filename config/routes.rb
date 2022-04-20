@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post 'uploads/prepare'
 
-  get '/users/profile/:id', to: 'user_profile#show'
+  get '/users/profiles/:id', to: 'user_profiles#show'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
