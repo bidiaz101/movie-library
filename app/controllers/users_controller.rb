@@ -21,11 +21,6 @@ class UsersController < ApplicationController
         render json: current_user, status: :created
     end
 
-    def profile
-        user_profile = User.find(params[:id])
-        render json: user_profile, serializer: UserProfileSerializer, status: :created
-    end
-
     private
 
     def user_params

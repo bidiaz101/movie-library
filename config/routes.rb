@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'uploads/prepare'
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
-  get '/them', to: 'users#profile'
   resources 'users', only: [:update]
   
   post '/login', to: 'sessions#create'
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
   resources 'reviews', only: [:create, :destroy]
 
   post 'uploads/prepare'
+
+  get '/users/profile/:id', to: 'user_profile#show'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
