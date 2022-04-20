@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CloudinaryUpload from './CloudinaryUpload'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfilePic } from '../features/user/userSlice'
 
 function Profile(){
     const { id, username, profilePic } = useSelector(state => state.user)
+
+    useEffect(() => {
+        fetch(`/users/profiles/${id}`)
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+    }, [])
 
     const dispatch = useDispatch()
 
