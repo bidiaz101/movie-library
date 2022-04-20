@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'uploads/prepare'
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
+  get '/them', to: 'users#profile'
   resources 'users', only: [:update]
   
   post '/login', to: 'sessions#create'

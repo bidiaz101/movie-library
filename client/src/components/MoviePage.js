@@ -20,7 +20,7 @@ function MoviePage({ moviePageId }) {
             setStatus('idle')
             setMovieData(data)
         })
-    }, [moviePageId])
+    }, [moviePageId, location.pathname])
 
     // id is the OMDB ID
     const { id, title, budget, original_title, release_date, runtime, overview, poster_path, tagline, vote_average, vote_count} = movieData
