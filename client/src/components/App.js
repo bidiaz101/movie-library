@@ -17,7 +17,6 @@ function App() {
   const { darkMode } = useSelector(state => state.user)
 
   const user = useSelector(state => state.user)
-  console.log(user)
 
   const dispatch = useDispatch()
 

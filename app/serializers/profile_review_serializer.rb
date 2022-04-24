@@ -1,3 +1,7 @@
 class ProfileReviewSerializer < ActiveModel::Serializer
-    attributes :id, :movie_id, :content, :score
+    attributes :id, :content, :score, :movie
+
+    def movie
+        ActiveModelSerializers::SerializableResource.new(object.movie, serializer: ProfileMovieSerializer)
+    end
 end
