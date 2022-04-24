@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CloudinaryUpload from './CloudinaryUpload'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateProfilePic } from '../features/user/userSlice'
-import ProfileReview from './ProfileReview'
+import ProfileReviews from './ProfileReviews'
 
 function Profile(){
     const { id, username, profilePic } = useSelector(state => state.user)
@@ -35,11 +35,8 @@ function Profile(){
         })
     }
 
-    const reviewsToDisplay = userReviews.map(review => {
-        return (
-            <ProfileReview key={review.id} review={review} />
-        )
-    })
+    const movieReviews = Array.from(new Set(userReviews.map(review => review.movie.omdb_id)))
+    const moviesToDisplay = movieReviews.map(movieId => <ProfileReviews key={movieId} movieId={movieId} reviews={userReviews.filter(review => review.movie.omdb_id === movieId)} />) 
 
     return (
         <div className="profile">
@@ -58,7 +55,7 @@ function Profile(){
                 </div>
             </div>
             <div>
-                {reviewsToDisplay}
+                {moviesToDisplay}
             </div>
         </div>
     )

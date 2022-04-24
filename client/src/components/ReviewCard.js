@@ -11,7 +11,7 @@ function ReviewCard({ review, handleDelete }){
     const buttonclassName = darkMode ? 'button-dark-review': 'button-review'
     
     return (
-         <div>
+        <div>
             <div>
                 <p>{stars}</p>
                 <div className='review-content'>

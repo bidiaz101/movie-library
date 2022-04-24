@@ -478,6 +478,10 @@ input:checked + .slider:before {
   margin-top: 20px;
 }
 
+.profile .poster{
+  height: 50px;
+}
+
 .pfp{
   height: 300px;
   width: 300px;
