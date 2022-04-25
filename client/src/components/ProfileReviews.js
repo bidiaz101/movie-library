@@ -17,7 +17,7 @@ function ProfileReviews({ movieId, reviews }){
         <>
         <div className='review-section'>
             <h3>Reviews for "{<Link to={`/movies/${movieId}`}>{movie.title}</Link>}"</h3>
-            <div>
+            <div className='review-wrap'>
                 <div>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='poster' />
                 </div>

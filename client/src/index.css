@@ -479,7 +479,7 @@ input:checked + .slider:before {
 }
 
 .profile .poster{
-  height: 100px;
+  height: 150px;
 }
 
 .profile .review-section {
@@ -490,6 +490,12 @@ input:checked + .slider:before {
 
 .profile .review-section .review-content-wrap div{
   margin: 10px;
+}
+
+.profile .review-section .review-wrap{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 9fr;
 }
 
 .pfp{
