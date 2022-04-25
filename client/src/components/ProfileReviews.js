@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ProfileReviewCard from './ProfileReviewCard'
+import { Link } from 'react-router-dom'
 
 function ProfileReviews({ movieId, reviews }){
     const [movie, setMovie] = useState(0)
@@ -15,7 +16,7 @@ function ProfileReviews({ movieId, reviews }){
     return (
         <>
         <div className='review-section'>
-            <h3>Reviews for "{movie.title}"</h3>
+            <h3>Reviews for "{<Link to={`/movies/${movieId}`}>{movie.title}</Link>}"</h3>
             <div>
                 <div>
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='poster' />
