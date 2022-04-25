@@ -474,12 +474,22 @@ input:checked + .slider:before {
 
 .profile{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: 20px;
 }
 
 .profile .poster{
-  height: 50px;
+  height: 100px;
+}
+
+.profile .review-section {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.profile .review-section .review-content-wrap div{
+  margin: 10px;
 }
 
 .pfp{

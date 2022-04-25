@@ -13,11 +13,20 @@ function ProfileReviews({ movieId, reviews }){
     const reviewsToDisplay = reviews.map(review => <ProfileReviewCard key={review.id} review={review} />)
 
     return (
-        <div>
+        <>
+        <div className='review-section'>
             <h3>Reviews for "{movie.title}"</h3>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='poster' />
-            {reviewsToDisplay}
+            <div>
+                <div>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='poster' />
+                </div>
+                <div>
+                    {reviewsToDisplay}
+                </div>
+            </div>
         </div>
+        <hr />
+        </>
     )
 }
 
